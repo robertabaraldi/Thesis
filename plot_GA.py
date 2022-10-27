@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from functions import plot_GA
+import seaborn as sns
 
 #%%
 ###### PLOT BEST INDIVIDUALS FROM HCM_GA ALGORITHM #######
@@ -18,6 +19,12 @@ ind_2 = ind_2.to_dict('index')
 
 t2, v2 = plot_GA(ind_2)
 plt.plot(t2, v2, '-m', label= 'Trial_2')
+
+ind_3= pd.read_excel('Best_ind_3.xlsx')
+ind_3 = ind_3.to_dict('index')
+
+t3, v3 = plot_GA(ind_3)
+plt.plot(t3, v3, '-r', label= 'Trial_3')
 
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
