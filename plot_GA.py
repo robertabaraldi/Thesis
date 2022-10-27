@@ -34,6 +34,8 @@ plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
 plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
+plt.savefig('Plot_Best_Inds.png')
 plt.show()
+
 
 # %%
