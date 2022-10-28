@@ -421,7 +421,7 @@ def plot_generation(inds,
     df.to_excel('Best_ind.xlsx', sheet_name='Sheet1', index=False)
 
 #%%
-def start_ga(pop_size=3, max_generations=3):
+def start_ga(pop_size=50, max_generations=3):
     feature_targets  =     {'dvdt_max': [6.56, 6.84, 7.12],
                              'peak': [25.64, 28.26, 30.88],
                              'apa': [82.12, 86.24, 90.36],
