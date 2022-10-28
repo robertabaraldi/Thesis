@@ -134,10 +134,6 @@ def run_ga(toolbox):
         avg.append(avg_fit)
         best.append(best_fit)
     
-    '''pop_list = [list(final_population[i][0].values()) for i in list(range(0, len(final_population)))]
-    df_info = pd.DataFrame([0] + pop_list + gen_fitnesses, columns = ['gen', 'conductances', 'fitness'])
-    df_info.to_excel('Ind.xlsx', index=False)'''
-    
     # Average and Best Errors in Excel file
     df_avg_err = pd.DataFrame(best, columns=["Avg Error"])
     df_best_err = pd.DataFrame(avg, columns=["Best Error"])
@@ -154,25 +150,6 @@ def run_ga(toolbox):
     plt.ylabel('Errors', fontsize=14)
     plt.savefig('Errors.png')
     plt.show()
-
-    ''' # Load 
-    par_err = pd.read_excel('Parameters_Errors.xlsx')
-    dvdt_max = pd.DataFrame(par_err, columns= ['dvdt_max'])
-    peak = pd.DataFrame(par_err, columns= ['peak'])
-    apa = pd.DataFrame(par_err, columns= ['apa'])
-    apd50 = pd.DataFrame(par_err, columns= ['apd50'])
-    apd90 = pd.DataFrame(par_err, columns= ['apd90'])
-    mdp = pd.DataFrame(par_err, columns= ['mdp'])
-
-    plt.plot(dvdt_max,'*b', label ='dvdt_max')
-    plt.plot(peak, '*g', label = 'peak')
-    plt.plot(apa,'*m', label = 'apa')
-    plt.plot(apd50,'*k', label = 'apd50')
-    plt.plot(apd90, '*r', label = 'apd90')
-    plt.plot(mdp,'*c', label = 'mdp')
-    plt.legend()
-    plt.show()'''
-
     
     return final_population
 
@@ -317,15 +294,6 @@ def get_feature_errors(ind):
     df1_data = pd.DataFrame(f)
     df1_data.to_excel('Features.xlsx', sheet_name='Sheet1',index=False)
 
-    '''plt.plot(err['dvdt_max'],'*b', label ='dvdt_max')
-    plt.plot(err['peak'], '*g', label = 'peak')
-    plt.plot(err['apa'],'*m', label = 'apa')
-    plt.plot(err['apd50'],'*k', label = 'apd50')
-    plt.plot(err['apd90'], '*r', label = 'apd90')
-    plt.plot(err['mdp'],'*c', label = 'mdp')
-    plt.legend()'''
-    
-
     return error
 
 #%%
@@ -338,7 +306,7 @@ def get_normal_sim_dat(ind):
         ------
             t, v, cai, i_ion
     """
-    mod, proto, x = myokit.load('./kernik.mmt')
+    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
     if ind is not None:
         for k, v in ind[0].items():
             k1, k2 = k.split('.')
@@ -454,7 +422,7 @@ def plot_generation(inds,
 
 
 #%%
-def start_ga(pop_size=100, max_generations=20):
+def start_ga(pop_size=3, max_generations=3):
     feature_targets  =     {'dvdt_max': [6.56, 6.84, 7.12],
                              'peak': [25.64, 28.26, 30.88],
                              'apa': [82.12, 86.24, 90.36],
