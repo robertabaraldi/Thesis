@@ -37,13 +37,14 @@ for i in list(range(0,pop)):
     Returns:
         An Individual with conductance parameters 
     """
-    tunable_parameters=['i_cal_pca_multiplier',
-                        'i_kr_multiplier',
-                        'i_ks_multiplier',
-                        'i_na_multiplier',
-                        'i_to_multiplier',
-                        'i_k1_multiplier',
-                        'i_f_multiplier']
+    tunable_parameters=['iks.g_scale',
+                        'ical.g_scale',
+                        'ikr.g_scale',
+                        'ina.g_scale',
+                        'ito.g_scale',
+                        'ik1.g_scale',
+                        'ifunny.g_scale',
+                        'membrane.gLeak']
 
     lower_exp = log10(0.1)
     upper_exp = log10(10)
@@ -58,7 +59,6 @@ for i in list(range(0,pop)):
     
 #%%
 for i in ind_list:
-    print(i)
     t, v, cai, i_ion = get_normal_sim_dat([i])
     '''# fixed number of columns
     cols = 5
@@ -68,6 +68,8 @@ for i in ind_list:
     plt.subplot(rows, cols, i + 1) 
     plt.plot(t,v)'''
     apd_val = calc_APD(t, v, 90)
+
+plt.plot(t,v)
 
 
 # %%

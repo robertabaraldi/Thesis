@@ -41,7 +41,7 @@ def calc_APD(t, v, apd_pct):
 def baseline_run():
     #Single Run
     mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
-    proto.schedule(4, 10, 1, 500, 0) 
+    proto.schedule(4, 10, 1, 1000, 0) 
 
     ############### MATURE AP ##############################################
     # These two lines of code are used to mature the ipsc so it looks more adult-like
