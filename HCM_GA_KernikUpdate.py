@@ -341,7 +341,8 @@ def get_normal_sim_dat(ind):
     mod, proto, x = myokit.load('./kernik.mmt')
     if ind is not None:
         for k, v in ind[0].items():
-            mod['multipliers'][k].set_rhs(v)
+            k1, k2 = k.split('.')
+            mod[k1][k2].set_rhs(v)
     
     mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
     mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
@@ -469,13 +470,14 @@ def start_ga(pop_size=100, max_generations=20):
                           max_generations=max_generations,
                           params_lower_bound=0.1,
                           params_upper_bound=10,
-                          tunable_parameters=['i_cal_pca_multiplier',
-                                              'i_kr_multiplier',
-                                              'i_ks_multiplier',
-                                              'i_na_multiplier',
-                                              'i_to_multiplier',
-                                              'i_k1_multiplier',
-                                              'i_f_multiplier'],
+                          tunable_parameters=['iks.g_scale',
+                                              'ical.g_scale',
+                                              'ikr.g_scale',
+                                              'ina.g_scale',
+                                              'ito.g_scale',
+                                              'ik1.g_scale',
+                                              'if.g_scale',
+                                              'membrane.gLeak'],
                           mate_probability=0.9,
                           mutate_probability=0.9,
                           gene_swap_probability=0.2,
