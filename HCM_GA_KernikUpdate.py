@@ -394,7 +394,7 @@ def plot_generation(inds,
 
     axs[0].hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
     axs[0].set_xticks([i for i in range(0, len(keys))])
-    axs[0].set_xticklabels(['GCaL', 'GKr', 'GKs', 'GNa', 'Gto', 'GK1', 'Gf'], fontsize=10)
+    axs[0].set_xticklabels(['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
     axs[0].set_ylim(log10(lower_bound), 
                     log10(upper_bound))
     axs[0].set_ylabel('Log10 Conductance', fontsize=14)
@@ -442,7 +442,7 @@ def start_ga(pop_size=3, max_generations=3):
                                               'ina.g_scale',
                                               'ito.g_scale',
                                               'ik1.g_scale',
-                                              'if.g_scale',
+                                              'ifunny.g_scale',
                                               'membrane.gLeak'],
                           mate_probability=0.9,
                           mutate_probability=0.9,
