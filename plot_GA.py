@@ -30,6 +30,12 @@ ind_3 = ind_3.to_dict('index')
 t3, v3 = plot_GA(ind_3)
 plt.plot(t3, v3, '-r', label = 'Trial_3')
 
+ind_4= pd.read_excel('Best_ind_4.xlsx')
+ind_4 = ind_4.to_dict('index')
+
+t4, v4 = plot_GA(ind_4)
+plt.plot(t4, v4, '-g', label = 'Trial_4')
+
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
