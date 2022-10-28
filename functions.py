@@ -6,7 +6,8 @@ import numpy as np
 
 #%%
 def plot_GA(ind):
-    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    #mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
 
     for k, v in ind[0].items():
             k1, k2 = k.split('.')
@@ -40,7 +41,8 @@ def calc_APD(t, v, apd_pct):
 #%%
 def baseline_run():
     #Single Run
-    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    #mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
     proto.schedule(4, 10, 1, 1000, 0) 
 
     ############### MATURE AP ##############################################
