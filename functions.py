@@ -3,6 +3,8 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from math import log10
+import random
 
 #%%
 def plot_GA(ind):
@@ -59,3 +61,37 @@ def baseline_run():
     v = np.array(dat['membrane.V'])
 
     return t, v
+
+#%%
+def build_pop(pop):
+    
+    ind_list = []
+
+    for i in list(range(0,pop)):
+        """
+        Creates the initial population of individuals. The initial 
+        population 
+
+        Returns:
+            An Individual with conductance parameters 
+        """
+        tunable_parameters=['iks.g_scale',
+                            'ical.g_scale',
+                            'ikr.g_scale',
+                            'ina.g_scale',
+                            'ito.g_scale',
+                            'ik1.g_scale',
+                            'ifunny.g_scale',
+                            'membrane.gLeak']
+
+        lower_exp = log10(0.1)
+        upper_exp = log10(10)
+        initial_params = [10**random.uniform(lower_exp, upper_exp)
+                            for i in range(0, len(
+                                tunable_parameters))]
+
+        keys = [val for val in tunable_parameters]
+        ind = dict(zip(keys, initial_params)) 
+        ind_list.append(ind)
+    
+    return ind_list
