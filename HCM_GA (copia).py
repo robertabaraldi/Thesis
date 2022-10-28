@@ -142,10 +142,10 @@ def run_ga(toolbox):
     df_avg_err = pd.DataFrame(best, columns=["Avg Error"])
     df_best_err = pd.DataFrame(avg, columns=["Best Error"])
     dfe = df_avg_err.join(df_best_err, how="outer")
-    dfe.to_excel('Errors.xlsx', sheet_name='Sheet1')
+    dfe.to_excel('Errors.xlsx', sheet_name='Sheet1', index=False)
     
     # Individuals in Excel file
-    df.to_excel('Individuals.xlsx', sheet_name='Sheet1')
+    df.to_excel('Individuals.xlsx', sheet_name='Sheet1',index=False)
     
     #plt.plot(gen, avg, '*m', label= 'Avg')
     plt.plot(gen, best, '*b', label= 'Best')
