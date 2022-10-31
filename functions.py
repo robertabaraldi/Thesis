@@ -53,6 +53,8 @@ def baseline_run():
     mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
     ########################################################################
 
+    mod['membrane']['gLeak'].set_rhs(0.2)
+
     sim = myokit.Simulation(mod, proto)
     sim.pre(1000 * 100)
     dat = sim.run(1000)
