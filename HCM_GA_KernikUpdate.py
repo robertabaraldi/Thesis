@@ -315,6 +315,8 @@ def get_normal_sim_dat(ind):
     mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
     mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
 
+    #mod['membrane']['gLeak'].set_rhs(0.2)
+
     proto.schedule(4, 10, 1, 1000, 0)
     
     sim = myokit.Simulation(mod, proto)
