@@ -322,6 +322,7 @@ def get_normal_sim_dat(ind):
 
     # Get t, v, and cai for second to last AP#######################
     i_stim = dat['stimulus.i_stim']
+    print(i_stim)
     peaks = find_peaks(-np.array(i_stim), distance=100)[0]
     start_ap = peaks[-3] 
     end_ap = peaks[-2]
