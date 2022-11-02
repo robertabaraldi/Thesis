@@ -15,6 +15,8 @@ t, v = baseline_run()
 plt.plot(t,v)
 
 apd_val = calc_APD(t, v, 90)
+print(apd_val)
+print(min(v))
 
 #%% 
 ######## ANOTHER WAY TO CHECK PRE-PACING ##########
