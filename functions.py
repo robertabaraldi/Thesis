@@ -73,7 +73,6 @@ def baseline_run():
 
     v = np.array(dat['membrane.V'][start_ap:end_ap])
 
-
     #t = np.array(dat['engine.time'])
     #v = np.array(dat['membrane.V'])
 
