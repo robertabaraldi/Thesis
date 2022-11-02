@@ -311,11 +311,11 @@ def get_normal_sim_dat(ind):
         for k, v in ind[0].items():
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
+    else:
+        mod['membrane']['gLeak'].set_rhs(0.2)
     
     mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
     mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
-
-    #mod['membrane']['gLeak'].set_rhs(0.2)
 
     proto.schedule(4, 10, 1, 1000, 0)
     
