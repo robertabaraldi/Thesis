@@ -62,11 +62,12 @@ end_ap = peaks[-2]
 
 t = np.array(dat['engine.time'][start_ap:end_ap])
 t = t - t[0]
-max_idx = np.argmin(np.abs(t-600))
+max_idx = np.argmin(np.abs(t-1200))
 t_leak = t[0:max_idx]
 end_ap = start_ap + max_idx
 
 v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+peak_v = find_peaks(-v_leak, height=0, distance=100)
 
 plt.plot(t_leak,v_leak, label = 'Kernik + 0.1gseal')
 
