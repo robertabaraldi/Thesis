@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from math import log10
 import random
+from scipy.signal import find_peaks 
 
 #%%
 def plot_GA(ind):
@@ -45,7 +46,7 @@ def baseline_run():
     #Single Run
     mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
     #mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
-    proto.schedule(1, 10, 1, 1000, 0) 
+    proto.schedule(4, 10, 1, 1000, 0) 
 
     ############### MATURE AP ##############################################
     # These two lines of code are used to mature the ipsc so it looks more adult-like
@@ -57,10 +58,24 @@ def baseline_run():
 
     sim = myokit.Simulation(mod, proto)
     sim.pre(1000 * 100)
-    dat = sim.run(1000)
+    dat = sim.run(50000)
 
-    t = np.array(dat['engine.time'])
-    v = np.array(dat['membrane.V'])
+    i_stim = dat['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2] 
+
+    t = np.array(dat['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-900))
+    t = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v = np.array(dat['membrane.V'][start_ap:end_ap])
+
+
+    #t = np.array(dat['engine.time'])
+    #v = np.array(dat['membrane.V'])
 
     return t, v
 

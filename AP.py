@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from functions import baseline_run, calc_APD, build_pop
+from scipy.signal import find_peaks 
 
 #%%
 ####### TO CHOOSE PRE-PACING ##########
