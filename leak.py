@@ -34,7 +34,15 @@ peak_v = find_peaks(-v_leak, height=0, distance=100)
 first_peak = peak_v[0][0] #first is to choose between the peaks and the peak_height, then to choose the first peak
 
 t_leak = t_leak[0:first_peak]
+n_array = 1000 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
+t_array = np.array([i+1 for i in range(int(t[first_peak]),1000)])
 v_leak = v_leak[0:first_peak]
+last_v = v_leak[-1] #last potential value
+v_array = np.full(int(n_array+1),last_v)
+
+v_leak = np.concatenate((v_leak, v_array))
+t_leak = np.concatenate((t_leak, t_array))
 
 plt.plot(t_leak,v_leak, label = 'Kernik + 0.1gseal')
 plt.show()
+
