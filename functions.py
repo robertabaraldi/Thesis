@@ -45,7 +45,7 @@ def baseline_run():
     #Single Run
     mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
     #mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
-    proto.schedule(3, 10, 1, 1000, 0) 
+    proto.schedule(1, 10, 1, 1000, 0) 
 
     ############### MATURE AP ##############################################
     # These two lines of code are used to mature the ipsc so it looks more adult-like
@@ -53,11 +53,11 @@ def baseline_run():
     mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
     ########################################################################
 
-    mod['membrane']['gLeak'].set_rhs(0.2)
+    mod['membrane']['gLeak'].set_rhs(0.1)
 
     sim = myokit.Simulation(mod, proto)
     sim.pre(1000 * 100)
-    dat = sim.run(1200)
+    dat = sim.run(1000)
 
     t = np.array(dat['engine.time'])
     v = np.array(dat['membrane.V'])
