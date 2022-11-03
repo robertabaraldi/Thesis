@@ -69,3 +69,30 @@ plt.show()
 
 
 # %%
+mod, proto, x = myokit.load('./kernik.mmt')
+
+mod['multipliers']['i_kr_multiplier'].set_rhs(0.2)
+mod['multipliers']['i_ks_multiplier'].set_rhs(0.4)
+mod['multipliers']['i_na_multiplier'].set_rhs(0.1)
+mod['multipliers']['i_cal_pca_multiplier'].set_rhs(1.5)
+
+
+mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
+mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
+
+proto.schedule(4, 10, 1, 1000, 0) 
+sim = myokit.Simulation(mod,proto)
+sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
+dat = sim.run(1000)
+t = dat['engine.time']
+v = dat['membrane.V']
+
+plt.plot(t, v, label = 'HCM')
+
+t, v = baseline_run()
+plt.plot(t, v, '-k', label = 'Baseline')
+plt.legend()
+plt.show()
+
+
+# %%
