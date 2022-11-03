@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from functions import baseline_run, plot_GA
 import seaborn as sns
+from scipy.signal import find_peaks 
 
 #%%
 ###### PLOT BEST INDIVIDUALS FROM HCM_GA ALGORITHM #######
@@ -69,13 +70,13 @@ plt.show()
 
 
 # %%
+###### TO SEE IF THE MODEL WORKS CHANGING CONDUCTANCES MANUALLY #########
 mod, proto, x = myokit.load('./kernik.mmt')
 
 mod['multipliers']['i_kr_multiplier'].set_rhs(0.2)
 mod['multipliers']['i_ks_multiplier'].set_rhs(0.4)
 mod['multipliers']['i_na_multiplier'].set_rhs(0.1)
 mod['multipliers']['i_cal_pca_multiplier'].set_rhs(1.5)
-
 
 mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
 mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
@@ -93,6 +94,5 @@ t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 plt.legend()
 plt.show()
-
 
 # %%
