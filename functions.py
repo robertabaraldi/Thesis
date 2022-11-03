@@ -9,15 +9,11 @@ from scipy.signal import find_peaks
 
 #%%
 def plot_GA(ind):
-    #mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
-    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
+    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
 
     for k, v in ind[0].items():
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
-
-    mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
-    mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
 
     proto.schedule(4, 10, 1, 1000, 0) 
     sim = myokit.Simulation(mod,proto)
@@ -43,16 +39,11 @@ def calc_APD(t, v, apd_pct):
 
 #%%
 def baseline_run():
-    #Single Run
-    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
-    #mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
-    proto.schedule(4, 10, 1, 1000, 0) 
+    ################# PACED #############################
 
-    ############### MATURE AP ##############################################
-    # These two lines of code are used to mature the ipsc so it looks more adult-like
-    mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
-    mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
-    ########################################################################
+    ############### KERNIK + GSEAL #####################
+    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    proto.schedule(4, 10, 1, 1000, 0) 
 
     mod['membrane']['gLeak'].set_rhs(0.1)
 
@@ -67,16 +58,25 @@ def baseline_run():
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-900))
-    t = t[0:max_idx]
+    max_idx = np.argmin(np.abs(t-1000))
+    t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
-    v = np.array(dat['membrane.V'][start_ap:end_ap])
+    v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+    peak_v = find_peaks(-v_leak, height=0, distance=100)
+    first_peak = peak_v[0][0] #first is to choose between the peaks and the peak_height, then to choose the first peak
 
-    #t = np.array(dat['engine.time'])
-    #v = np.array(dat['membrane.V'])
+    t_leak = t_leak[0:first_peak]
+    n_array = 1000 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
+    t_array = np.array([i+1 for i in range(int(t[first_peak]),1000)])
+    v_leak = v_leak[0:first_peak]
+    last_v = v_leak[-1] #last potential value
+    v_array = np.full(int(n_array+1),last_v)
 
-    return t, v
+    v_leak = np.concatenate((v_leak, v_array))
+    t_leak = np.concatenate((t_leak, t_array))
+
+    return t_leak, v_leak
 
 #%%
 def build_pop(pop):

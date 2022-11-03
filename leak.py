@@ -25,6 +25,22 @@ end_ap = peaks[-2]
 
 t = np.array(dat['engine.time'][start_ap:end_ap])
 t = t - t[0]
+max_idx = np.argmin(np.abs(t-1200))
+t_leak = t[0:max_idx]
+end_ap = start_ap + max_idx
+
+v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+peak_v = find_peaks(-v_leak, height=0, distance=100)
+
+plt.plot(t_leak,v_leak, label = 'Kernik + 0.1gseal')
+
+'''i_stim = dat['stimulus.i_stim']
+peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+start_ap = peaks[-3] 
+end_ap = peaks[-2] 
+
+t = np.array(dat['engine.time'][start_ap:end_ap])
+t = t - t[0]
 max_idx = np.argmin(np.abs(t-1000))
 t_leak = t[0:max_idx]
 end_ap = start_ap + max_idx
@@ -43,6 +59,37 @@ v_array = np.full(int(n_array+1),last_v)
 v_leak = np.concatenate((v_leak, v_array))
 t_leak = np.concatenate((t_leak, t_array))
 
-plt.plot(t_leak,v_leak, label = 'Kernik + 0.1gseal')
-plt.show()
+plt.plot(t_leak,v_leak, label = 'Kernik baseline')'''
 
+############### CHANGE CONDUCTANCES #####################
+mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+proto.schedule(4, 10, 1, 1000, 0) 
+
+mod['membrane']['gLeak'].set_rhs(0.1)
+mod['ikr']['g_Kr'].set_rhs(0.1)
+mod['iks']['g_Ks'].set_rhs(0.27)
+mod['ical']['g_scale'].set_rhs(1.55)
+mod['ina']['g_Na'].set_rhs(0.1)
+
+sim = myokit.Simulation(mod, proto)
+sim.pre(1000 * 100)
+dat = sim.run(50000)
+
+i_stim = dat['stimulus.i_stim']
+peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+start_ap = peaks[-3] 
+end_ap = peaks[-2] 
+
+t = np.array(dat['engine.time'][start_ap:end_ap])
+t = t - t[0]
+max_idx = np.argmin(np.abs(t-1200))
+t_leak = t[0:max_idx]
+end_ap = start_ap + max_idx
+
+v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+peak_v = find_peaks(-v_leak, height=0, distance=100)
+
+plt.plot(t_leak,v_leak, label = 'HCM')
+
+plt.legend()
+plt.show()

@@ -36,24 +36,6 @@ ind_4 = ind_4.to_dict('index')
 t4, v4 = plot_GA(ind_4)
 plt.plot(t4, v4, '-g', label = 'Trial_4')
 
-ind_5 = pd.read_excel('Best_ind_5.xlsx')
-ind_5 = ind_5.to_dict('index')
-
-t5, v5 = plot_GA(ind_5)
-plt.plot(t5, v5, '-y', label = 'Trial_5')
-
-ind_6 = pd.read_excel('Best_ind_6.xlsx')
-ind_6 = ind_6.to_dict('index')
-
-t6, v6 = plot_GA(ind_6)
-plt.plot(t6, v6, '-c', label = 'Trial_6')
-
-ind_7 = pd.read_excel('Best_ind_7.xlsx')
-ind_7 = ind_7.to_dict('index')
-
-t7, v7 = plot_GA(ind_7)
-plt.plot(t7, v7, c = 'hotpink', label = 'Trial_7')
-
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
