@@ -6,13 +6,24 @@ import pandas as pd
 import numpy as np
 from functions import calc_APD
 from functions import baseline_run
+from scipy.signal import find_peaks 
 
 #%%
 ################## TO CHOOSE PRE-PACING ######################
 
 t, v = baseline_run()
+peak_v = find_peaks(v, distance=100)
+peak = v[peak_v[0][0]]
+print(peak[0])
+t_p = t[0:peak[0][0]]
+v_p = v[0:peak[0][0]]
 
 plt.plot(t,v)
+plt.plot(t_p,v_p)
+
+print(max(v))
+print(v[peak[0][0]])
+
 
 apd_val = calc_APD(t, v, 90)
 

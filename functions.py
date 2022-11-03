@@ -3,6 +3,7 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from math import log10
 
 #%%
 def plot_GA(ind):
@@ -56,3 +57,23 @@ def baseline_run():
     v = np.array(dat['membrane.V'])
 
     return t, v
+
+#%%
+def plot_g(ind):
+    keys = [k for k in ind.keys()]
+
+    curr_x = 0
+    for k, conds in ind.items():
+            for i, g in enumerate(conds):
+                g = log10(g)
+                x = curr_x + np.random.normal(0, .01)
+                plt.scatter(x, g)
+
+            curr_x += 1
+
+    curr_x = 0
+
+    plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
+    plt.xticks([i for i in range(0, len(keys))],['GCaL', 'GKr', 'GKs', 'GNa', 'Gto', 'GK1', 'Gf'], fontsize=10)
+    plt.ylim(log10(0.1), log10(10))
+    plt.ylabel('Log10 Conductance', fontsize=14)

@@ -259,7 +259,9 @@ def get_feature_errors(ind):
     dvdt_max = np.max(np.diff(v[0:30])/np.diff(t[0:30]))
 
     ap_features['dvdt_max'] = dvdt_max
-    ap_features['peak'] = max_p
+    peak_v = find_peaks(v, distance=100)
+    peak = v[peak_v[0][0]]
+    ap_features['peak'] = peak
     ap_features['apa']= apa
 
     for apd_pct in [50, 90]:
@@ -322,7 +324,6 @@ def get_normal_sim_dat(ind):
 
     # Get t, v, and cai for second to last AP#######################
     i_stim = dat['stimulus.i_stim']
-    print(i_stim)
     peaks = find_peaks(-np.array(i_stim), distance=100)[0]
     start_ap = peaks[-3] 
     end_ap = peaks[-2]
@@ -422,7 +423,7 @@ def plot_generation(inds,
 
 
 #%%
-def start_ga(pop_size=10, max_generations=3):
+def start_ga(pop_size=100, max_generations=30):
     feature_targets  =     {'dvdt_max': [6.56, 6.84, 7.12],
                              'peak': [25.64, 28.26, 30.88],
                              'apa': [82.12, 86.24, 90.36],

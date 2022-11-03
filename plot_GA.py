@@ -3,12 +3,12 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from functions import baseline_run, plot_GA
+from functions import baseline_run, plot_GA, plot_g
 import seaborn as sns
 from scipy.signal import find_peaks 
 
 #%%
-###### PLOT BEST INDIVIDUALS FROM HCM_GA ALGORITHM #######
+######## PLOT BEST INDIVIDUALS #########
 
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
@@ -68,6 +68,9 @@ plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
 plt.savefig('Plot_Best_Inds.png')
 plt.show()
 
+########### PLOT CONDUCTANCES ############
+
+plot_g(ind_1)
 
 # %%
 ###### TO SEE IF THE MODEL WORKS CHANGING CONDUCTANCES MANUALLY #########
@@ -96,7 +99,7 @@ plt.legend()
 plt.show()
 
 # %%
-########### PLOT BEST ERROR ###########
+############ PLOT BEST ERROR ################
 gen = [i for i in list(range(1,80))]
 
 err_1 = pd.read_excel('Errors_1.xlsx')
@@ -134,8 +137,3 @@ plt.suptitle('Best Errors', fontsize=14)
 plt.savefig('Plot_Best_Errors.png')
 plt.ylim(0,20000)
 plt.show()
-
-
-
-
-# %%
