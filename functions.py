@@ -18,11 +18,24 @@ def plot_GA(ind):
     proto.schedule(4, 10, 1, 1000, 0) 
     sim = myokit.Simulation(mod,proto)
     sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
-    dat = sim.run(1000)
+    dat = sim.run(50000)
+
+    i_stim = dat['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2]
+
+    t = np.array(dat['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-1000))
+    t_leak = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
     t = dat['engine.time']
     v = dat['membrane.V']
 
-    return t,v
+    return t_leak,v_leak
 
 #%%
 def calc_APD(t, v, apd_pct):

@@ -43,5 +43,30 @@ plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
 plt.savefig('Plot_Best_Inds.png')
 plt.show()
 
+#%%
+############ PLOT BEST ERROR ################
+gen = [i for i in list(range(1,80))]
 
-# %%
+err_1 = pd.read_excel('Errors_1.xlsx')
+best_err_1 = list(err_1['Avg Error'])
+plt.plot(gen, best_err_1,'*', label = 'Trial_1')
+
+err_2 = pd.read_excel('Errors_2.xlsx')
+best_err_2 = list(err_2['Avg Error'])
+plt.plot(gen, best_err_2,'*', label = 'Trial_2')
+
+err_3 = pd.read_excel('Errors_3.xlsx')
+best_err_3 = list(err_3['Avg Error'])
+plt.plot(gen, best_err_3,'*', label = 'Trial_3')
+
+err_4 = pd.read_excel('Errors_4.xlsx')
+best_err_4 = list(err_4['Avg Error'])
+plt.plot(gen, best_err_4,'*', label = 'Trial_4')
+
+plt.legend()
+plt.ylabel('Error', fontsize=14)
+plt.xlabel('Generation', fontsize=14)
+plt.suptitle('Best Errors', fontsize=14)
+plt.ylim(0,8000)
+plt.savefig('Plot_Best_Errors.png')
+plt.show()
