@@ -68,10 +68,6 @@ plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
 plt.savefig('Plot_Best_Inds.png')
 plt.show()
 
-########### PLOT CONDUCTANCES ############
-
-plot_g(ind_1)
-
 # %%
 ###### TO SEE IF THE MODEL WORKS CHANGING CONDUCTANCES MANUALLY #########
 mod, proto, x = myokit.load('./kernik.mmt')
@@ -79,7 +75,7 @@ mod, proto, x = myokit.load('./kernik.mmt')
 mod['multipliers']['i_kr_multiplier'].set_rhs(0.2)
 mod['multipliers']['i_ks_multiplier'].set_rhs(0.4)
 mod['multipliers']['i_na_multiplier'].set_rhs(0.1)
-mod['multipliers']['i_cal_pca_multiplier'].set_rhs(1.5)
+mod['multipliers']['i_cal_pca_multiplier'].set_rhs(1.3)
 
 mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
 mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
@@ -103,31 +99,31 @@ plt.show()
 gen = [i for i in list(range(1,80))]
 
 err_1 = pd.read_excel('Errors_1.xlsx')
-best_err_1 = list(err_1['Best Error'])
+best_err_1 = list(err_1['Avg Error'])
 plt.plot(gen, best_err_1,'*', label = 'Trial_1')
 
 err_2 = pd.read_excel('Errors_2.xlsx')
-best_err_2 = list(err_2['Best Error'])
+best_err_2 = list(err_2['Avg Error'])
 plt.plot(gen, best_err_2,'*', label = 'Trial_2')
 
 err_3 = pd.read_excel('Errors_3.xlsx')
-best_err_3 = list(err_3['Best Error'])
+best_err_3 = list(err_3['Avg Error'])
 plt.plot(gen, best_err_3,'*', label = 'Trial_3')
 
 err_4 = pd.read_excel('Errors_4.xlsx')
-best_err_4 = list(err_4['Best Error'])
+best_err_4 = list(err_4['Avg Error'])
 plt.plot(gen, best_err_4,'*', label = 'Trial_4')
 
 err_5 = pd.read_excel('Errors_5.xlsx')
-best_err_5 = list(err_5['Best Error'])
+best_err_5 = list(err_5['Avg Error'])
 plt.plot(gen, best_err_5,'*', label = 'Trial_5')
 
 err_6 = pd.read_excel('Errors_6.xlsx')
-best_err_6 = list(err_6['Best Error'])
+best_err_6 = list(err_6['Avg Error'])
 plt.plot(gen, best_err_6,'*', label = 'Trial_6')
 
 err_7 = pd.read_excel('Errors_7.xlsx')
-best_err_7 = list(err_7['Best Error'])
+best_err_7 = list(err_7['Avg Error'])
 plt.plot(gen, best_err_7,'*', label = 'Trial_7')
 
 plt.legend()
@@ -137,3 +133,5 @@ plt.suptitle('Best Errors', fontsize=14)
 plt.savefig('Plot_Best_Errors.png')
 plt.ylim(0,20000)
 plt.show()
+
+# %%
