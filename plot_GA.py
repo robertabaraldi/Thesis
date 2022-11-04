@@ -19,7 +19,7 @@ ind_1 = ind_1.to_dict('index')
 t1, v1 = plot_GA(ind_1)
 plt.plot(t1, v1, label = 'Trial_1')
 
-ind_2 = pd.read_excel('Best_ind_secondo.xlsx')
+ind_2 = pd.read_excel('Best_ind_secondo_.xlsx')
 ind_2 = ind_2.to_dict('index')
 
 t2, v2 = plot_GA(ind_2)
@@ -40,7 +40,7 @@ err_1 = pd.read_excel('Errors_primo.xlsx')
 best_err_1 = list(err_1['Avg Error'])
 plt.plot(gen, best_err_1,'*', label = 'Trial_1')
 
-err_2 = pd.read_excel('Errors_secondo.xlsx')
+err_2 = pd.read_excel('Errors_secondo_.xlsx')
 best_err_2 = list(err_2['Avg Error'])
 plt.plot(gen, best_err_2,'*', label = 'Trial_2')
 
