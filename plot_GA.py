@@ -16,25 +16,31 @@ ind_1 = pd.read_excel('Best_ind_1.xlsx')
 ind_1 = ind_1.to_dict('index')
 
 t1, v1 = plot_GA(ind_1)
-plt.plot(t1, v1, '-b', label = 'Trial_1')
+plt.plot(t1, v1, label = 'Trial_1')
 
 ind_2 = pd.read_excel('Best_ind_2.xlsx')
 ind_2 = ind_2.to_dict('index')
 
 t2, v2 = plot_GA(ind_2)
-plt.plot(t2, v2, '-m', label = 'Trial_2')
+plt.plot(t2, v2, label = 'Trial_2')
 
 ind_3 = pd.read_excel('Best_ind_3.xlsx')
 ind_3 = ind_3.to_dict('index')
 
 t3, v3 = plot_GA(ind_3)
-plt.plot(t3, v3, '-r', label = 'Trial_3')
+plt.plot(t3, v3, label = 'Trial_3')
 
 ind_4 = pd.read_excel('Best_ind_4.xlsx')
 ind_4 = ind_4.to_dict('index')
 
 t4, v4 = plot_GA(ind_4)
-plt.plot(t4, v4, '-g', label = 'Trial_4')
+plt.plot(t4, v4, label = 'Trial_4')
+
+ind_5 = pd.read_excel('Best_ind_5.xlsx')
+ind_5 = ind_5.to_dict('index')
+
+t5, v5 = plot_GA(ind_5)
+plt.plot(t4, v4, label = 'Trial_5')
 
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -62,6 +68,10 @@ plt.plot(gen, best_err_3,'*', label = 'Trial_3')
 err_4 = pd.read_excel('Errors_4.xlsx')
 best_err_4 = list(err_4['Avg Error'])
 plt.plot(gen, best_err_4,'*', label = 'Trial_4')
+
+err_5 = pd.read_excel('Errors_5.xlsx')
+best_err_5 = list(err_5['Best Error'])
+plt.plot(gen, best_err_5,'*', label = 'Trial_5')
 
 plt.legend()
 plt.ylabel('Error', fontsize=14)
