@@ -42,6 +42,12 @@ ind_5 = ind_5.to_dict('index')
 t5, v5 = plot_GA(ind_5)
 plt.plot(t4, v4, label = 'Trial_5')
 
+ind_6 = pd.read_excel('Best_ind_6.xlsx')
+ind_6 = ind_6.to_dict('index')
+
+t6, v6 = plot_GA(ind_6)
+plt.plot(t6, v6, label = 'Trial_6')
+
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
@@ -72,6 +78,10 @@ plt.plot(gen, best_err_4,'*', label = 'Trial_4')
 err_5 = pd.read_excel('Errors_5.xlsx')
 best_err_5 = list(err_5['Best Error'])
 plt.plot(gen, best_err_5,'*', label = 'Trial_5')
+
+err_6 = pd.read_excel('Errors_6.xlsx')
+best_err_6 = list(err_5['Best Error'])
+plt.plot(gen, best_err_6,'*', label = 'Trial_6')
 
 plt.legend()
 plt.ylabel('Error', fontsize=14)
