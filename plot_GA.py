@@ -73,6 +73,25 @@ ind_10 = ind_10.to_dict('index')
 t10, v10 = plot_GA(ind_10)
 plt.plot(t10, v10, label = 'Trial_10')
 
+ind_10 = pd.read_excel('Best_ind_10.xlsx')
+ind_10 = ind_10.to_dict('index')
+
+t10, v10 = plot_GA(ind_10)
+plt.plot(t10, v10, label = 'Trial_10')
+
+ind_11 = pd.read_excel('Best_ind_11.xlsx')
+ind_11 = ind_11.to_dict('index')
+
+t11, v11 = plot_GA(ind_11)
+plt.plot(t11, v11, label = 'Trial_11')
+
+ind_12 = pd.read_excel('Best_ind_12.xlsx')
+ind_12 = ind_12.to_dict('index')
+
+t12, v12 = plot_GA(ind_12)
+plt.plot(t12, v12, label = 'Trial_12')
+
+
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
@@ -124,6 +143,14 @@ err_10 = pd.read_excel('Errors_10.xlsx')
 best_err_10 = list(err_10['Best Error'])
 plt.plot(gen, best_err_10,'*', label = 'Trial_10')
 
+err_11 = pd.read_excel('Errors_11.xlsx')
+best_err_11 = list(err_11['Best Error'])
+plt.plot(gen, best_err_11,'*', label = 'Trial_11')
+
+err_12 = pd.read_excel('Errors_12.xlsx')
+best_err_12 = list(err_12['Best Error'])
+plt.plot(gen, best_err_12,'*', label = 'Trial_12')
+
 plt.legend()
 plt.ylabel('Error', fontsize=14)
 plt.xlabel('Generation', fontsize=14)
@@ -167,6 +194,6 @@ plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
 plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
-plt.legend()
+#plt.legend()
 plt.show()
 
