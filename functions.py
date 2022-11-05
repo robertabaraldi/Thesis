@@ -124,3 +124,23 @@ def build_pop(pop):
         ind_list.append(ind)
     
     return ind_list
+
+#%%
+
+def plot_cond(ind, lab):
+
+    curr_x = 0
+    keys = [k for k, v in ind[0].items()]
+
+    for k, g in ind[0].items():
+        g = log10(g)
+        x = curr_x + np.random.normal(0, .01)
+        plt.scatter(x, g, label = f'Trial_{lab}')
+        curr_x += 1
+
+    curr_x = 0
+
+    plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
+    plt.ylim(log10(0.1), log10(10))
+    plt.ylabel('Log10 Conductance', fontsize=14)
+    plt.legend()

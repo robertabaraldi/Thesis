@@ -259,7 +259,9 @@ def get_feature_errors(ind):
     dvdt_max = np.max(np.diff(v[0:30])/np.diff(t[0:30]))
 
     ap_features['dvdt_max'] = dvdt_max
-    ap_features['peak'] = max_p
+    peak_v = find_peaks(v, distance=100)
+    peak = v[peak_v[0][0]]
+    ap_features['peak'] = peak
     ap_features['apa']= apa
 
     for apd_pct in [50, 90]:
