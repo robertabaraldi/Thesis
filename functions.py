@@ -186,7 +186,10 @@ def ind_excel():
     ind_13 = pd.read_excel('Best_ind_13.xlsx')
     ind_13 = ind_13.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13
+    ind_14 = pd.read_excel('Best_ind_14.xlsx')
+    ind_14 = ind_14.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14
 
 #%%
 def err_excel():
@@ -215,5 +218,7 @@ def err_excel():
     err_12 = pd.read_excel('Errors_12.xlsx')
 
     err_13 = pd.read_excel('Errors_13.xlsx')
+    
+    err_14 = pd.read_excel('Errors_14.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13
+    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14

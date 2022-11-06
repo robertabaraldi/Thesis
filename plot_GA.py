@@ -13,13 +13,13 @@ from math import log10
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13 = ind_excel()
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14 = ind_excel()
 
-pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13]
+pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14]
 
-for i in list(range(1,len(pop))):
+for i in list(range(0,len(pop))):
     t, v = plot_GA(pop[i])
-    plt.plot(t, v, label = f'Trial_{i}')
+    plt.plot(t, v, label = f'Trial_{i+1}')
 
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -32,14 +32,14 @@ plt.show()
 ############ PLOT BEST ERROR ################
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13 = err_excel()
+err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14 = err_excel()
 
 err = [err_1, err_2, err_3, err_4, err_5, err_6, err_7, 
-err_8, err_9, err_10, err_11, err_12, err_13]
+err_8, err_9, err_10, err_11, err_12, err_13, err_14]
 
-for i in list(range(1,len(err))):
+for i in list(range(0,len(err))):
     best_err = list(err[i]['Best Error'])
-    plt.plot(gen, best_err,'*', label = f'Trial_{i}')
+    plt.plot(gen, best_err,'*', label = f'Trial_{i+1}')
 
 plt.legend()
 plt.ylabel('Error', fontsize=14)
@@ -51,10 +51,10 @@ plt.show()
 
 #%% 
 ########## PLOT CONDUCTANCES ############
-pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13]
+pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14]
 trials = []
 
-for i in list(range(0,10)):
+for i in list(range(0,len(pop))):
     trials.append(f'Trial_{i}')
 
 keys = [k for k in pop[0][0].keys()]
@@ -87,3 +87,4 @@ plt.ylabel('Log10 Conductance', fontsize=14)
 #plt.legend()
 plt.show()
 
+# %%
