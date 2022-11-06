@@ -144,3 +144,46 @@ def plot_cond(ind, lab):
     plt.ylim(log10(0.1), log10(10))
     plt.ylabel('Log10 Conductance', fontsize=14)
     plt.legend()
+
+#%%
+def ind():
+    ind_1 = pd.read_excel('Best_ind_1.xlsx')
+    ind_1 = ind_1.to_dict('index')
+
+    ind_2 = pd.read_excel('Best_ind_2.xlsx')
+    ind_2 = ind_2.to_dict('index')
+
+    ind_3 = pd.read_excel('Best_ind_3.xlsx')
+    ind_3 = ind_3.to_dict('index')
+
+    ind_4 = pd.read_excel('Best_ind_4.xlsx')
+    ind_4 = ind_4.to_dict('index')
+
+    ind_5 = pd.read_excel('Best_ind_5.xlsx')
+    ind_5 = ind_5.to_dict('index')
+
+    ind_6 = pd.read_excel('Best_ind_6.xlsx')
+    ind_6 = ind_6.to_dict('index')
+
+    ind_7 = pd.read_excel('Best_ind_7.xlsx')
+    ind_7 = ind_7.to_dict('index')
+
+    ind_8 = pd.read_excel('Best_ind_8.xlsx')
+    ind_8 = ind_8.to_dict('index')
+
+    ind_9 = pd.read_excel('Best_ind_9.xlsx')
+    ind_9 = ind_9.to_dict('index')
+
+    ind_10 = pd.read_excel('Best_ind_10.xlsx')
+    ind_10 = ind_10.to_dict('index')
+
+    ind_11 = pd.read_excel('Best_ind_11.xlsx')
+    ind_11 = ind_11.to_dict('index')
+
+    ind_12 = pd.read_excel('Best_ind_12.xlsx')
+    ind_12 = ind_12.to_dict('index')
+
+    ind_13 = pd.read_excel('Best_ind_13.xlsx')
+    ind_13 = ind_13.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13

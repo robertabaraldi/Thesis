@@ -3,7 +3,7 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from functions import baseline_run, plot_GA, plot_cond
+from functions import baseline_run, plot_GA, plot_cond, ind
 import seaborn as sns
 from math import log10
 
@@ -13,84 +13,13 @@ from math import log10
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1 = pd.read_excel('Best_ind_1.xlsx')
-ind_1 = ind_1.to_dict('index')
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13 = ind()
 
-t1, v1 = plot_GA(ind_1)
-plt.plot(t1, v1, label = 'Trial_1')
+pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13]
 
-ind_2 = pd.read_excel('Best_ind_2.xlsx')
-ind_2 = ind_2.to_dict('index')
-
-t2, v2 = plot_GA(ind_2)
-plt.plot(t2, v2, label = 'Trial_2')
-
-ind_3 = pd.read_excel('Best_ind_3.xlsx')
-ind_3 = ind_3.to_dict('index')
-
-t3, v3 = plot_GA(ind_3)
-plt.plot(t3, v3, label = 'Trial_3')
-
-ind_4 = pd.read_excel('Best_ind_4.xlsx')
-ind_4 = ind_4.to_dict('index')
-
-t4, v4 = plot_GA(ind_4)
-plt.plot(t4, v4, label = 'Trial_4')
-
-ind_5 = pd.read_excel('Best_ind_5.xlsx')
-ind_5 = ind_5.to_dict('index')
-
-t5, v5 = plot_GA(ind_5)
-plt.plot(t4, v4, label = 'Trial_5')
-
-ind_6 = pd.read_excel('Best_ind_6.xlsx')
-ind_6 = ind_6.to_dict('index')
-
-t6, v6 = plot_GA(ind_6)
-plt.plot(t6, v6, label = 'Trial_6')
-
-ind_7 = pd.read_excel('Best_ind_7.xlsx')
-ind_7 = ind_7.to_dict('index')
-
-t7, v7 = plot_GA(ind_7)
-plt.plot(t7, v7, label = 'Trial_7')
-
-ind_8 = pd.read_excel('Best_ind_8.xlsx')
-ind_8 = ind_8.to_dict('index')
-
-t8, v8 = plot_GA(ind_8)
-plt.plot(t8, v8, label = 'Trial_8')
-
-ind_9 = pd.read_excel('Best_ind_9.xlsx')
-ind_9 = ind_9.to_dict('index')
-
-t9, v9 = plot_GA(ind_9)
-plt.plot(t9, v9, label = 'Trial_9')
-
-ind_10 = pd.read_excel('Best_ind_10.xlsx')
-ind_10 = ind_10.to_dict('index')
-
-t10, v10 = plot_GA(ind_10)
-plt.plot(t10, v10, label = 'Trial_10')
-
-ind_10 = pd.read_excel('Best_ind_10.xlsx')
-ind_10 = ind_10.to_dict('index')
-
-t10, v10 = plot_GA(ind_10)
-plt.plot(t10, v10, label = 'Trial_10')
-
-ind_11 = pd.read_excel('Best_ind_11.xlsx')
-ind_11 = ind_11.to_dict('index')
-
-t11, v11 = plot_GA(ind_11)
-plt.plot(t11, v11, label = 'Trial_11')
-
-ind_12 = pd.read_excel('Best_ind_12.xlsx')
-ind_12 = ind_12.to_dict('index')
-
-t12, v12 = plot_GA(ind_12)
-plt.plot(t12, v12, label = 'Trial_12')
-
+for i in list(range(1,len(pop))):
+    t, v = plot_GA(pop[i])
+    plt.plot(t, v, label = f'Trial_{i}')
 
 plt.legend()
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -151,6 +80,10 @@ err_12 = pd.read_excel('Errors_12.xlsx')
 best_err_12 = list(err_12['Best Error'])
 plt.plot(gen, best_err_12,'*', label = 'Trial_12')
 
+err_13 = pd.read_excel('Errors_13.xlsx')
+best_err_13 = list(err_13['Best Error'])
+plt.plot(gen, best_err_13,'*', label = 'Trial_13')
+
 plt.legend()
 plt.ylabel('Error', fontsize=14)
 plt.xlabel('Generation', fontsize=14)
@@ -161,7 +94,7 @@ plt.show()
 
 #%% 
 ########## PLOT CONDUCTANCES ############
-pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10]
+pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13]
 trials = []
 
 for i in list(range(0,10)):
