@@ -146,7 +146,7 @@ def plot_cond(ind, lab):
     plt.legend()
 
 #%%
-def ind():
+def ind_excel():
     ind_1 = pd.read_excel('Best_ind_1.xlsx')
     ind_1 = ind_1.to_dict('index')
 
@@ -187,3 +187,33 @@ def ind():
     ind_13 = ind_13.to_dict('index')
 
     return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13
+
+#%%
+def err_excel():
+    err_1 = pd.read_excel('Errors_1.xlsx')
+
+    err_2 = pd.read_excel('Errors_2.xlsx')
+
+    err_3 = pd.read_excel('Errors_3.xlsx')
+
+    err_4 = pd.read_excel('Errors_4.xlsx')
+
+    err_5 = pd.read_excel('Errors_5.xlsx')
+
+    err_6 = pd.read_excel('Errors_6.xlsx')
+
+    err_7 = pd.read_excel('Errors_7.xlsx')
+
+    err_8 = pd.read_excel('Errors_8.xlsx')
+
+    err_9 = pd.read_excel('Errors_9.xlsx')
+
+    err_10 = pd.read_excel('Errors_10.xlsx')
+
+    err_11 = pd.read_excel('Errors_11.xlsx')
+
+    err_12 = pd.read_excel('Errors_12.xlsx')
+
+    err_13 = pd.read_excel('Errors_13.xlsx')
+
+    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13

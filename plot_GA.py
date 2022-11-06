@@ -3,7 +3,7 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from functions import baseline_run, plot_GA, plot_cond, ind
+from functions import baseline_run, plot_GA, plot_cond, ind_excel, err_excel
 import seaborn as sns
 from math import log10
 
@@ -13,7 +13,7 @@ from math import log10
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13 = ind()
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13 = ind_excel()
 
 pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13]
 
@@ -32,57 +32,14 @@ plt.show()
 ############ PLOT BEST ERROR ################
 gen = [i for i in list(range(1,80))]
 
-err_1 = pd.read_excel('Errors_1.xlsx')
-best_err_1 = list(err_1['Avg Error'])
-plt.plot(gen, best_err_1,'*', label = 'Trial_1')
+err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13 = err_excel()
 
-err_2 = pd.read_excel('Errors_2.xlsx')
-best_err_2 = list(err_2['Avg Error'])
-plt.plot(gen, best_err_2,'*', label = 'Trial_2')
+err = [err_1, err_2, err_3, err_4, err_5, err_6, err_7, 
+err_8, err_9, err_10, err_11, err_12, err_13]
 
-err_3 = pd.read_excel('Errors_3.xlsx')
-best_err_3 = list(err_3['Avg Error'])
-plt.plot(gen, best_err_3,'*', label = 'Trial_3')
-
-err_4 = pd.read_excel('Errors_4.xlsx')
-best_err_4 = list(err_4['Avg Error'])
-plt.plot(gen, best_err_4,'*', label = 'Trial_4')
-
-err_5 = pd.read_excel('Errors_5.xlsx')
-best_err_5 = list(err_5['Best Error'])
-plt.plot(gen, best_err_5,'*', label = 'Trial_5')
-
-err_6 = pd.read_excel('Errors_6.xlsx')
-best_err_6 = list(err_6['Best Error'])
-plt.plot(gen, best_err_6,'*', label = 'Trial_6')
-
-err_7 = pd.read_excel('Errors_7.xlsx')
-best_err_7 = list(err_7['Best Error'])
-plt.plot(gen, best_err_7,'*', label = 'Trial_7')
-
-err_8 = pd.read_excel('Errors_8.xlsx')
-best_err_8 = list(err_8['Best Error'])
-plt.plot(gen, best_err_8,'*', label = 'Trial_8')
-
-err_9 = pd.read_excel('Errors_9.xlsx')
-best_err_9 = list(err_9['Best Error'])
-plt.plot(gen, best_err_9,'*', label = 'Trial_9')
-
-err_10 = pd.read_excel('Errors_10.xlsx')
-best_err_10 = list(err_10['Best Error'])
-plt.plot(gen, best_err_10,'*', label = 'Trial_10')
-
-err_11 = pd.read_excel('Errors_11.xlsx')
-best_err_11 = list(err_11['Best Error'])
-plt.plot(gen, best_err_11,'*', label = 'Trial_11')
-
-err_12 = pd.read_excel('Errors_12.xlsx')
-best_err_12 = list(err_12['Best Error'])
-plt.plot(gen, best_err_12,'*', label = 'Trial_12')
-
-err_13 = pd.read_excel('Errors_13.xlsx')
-best_err_13 = list(err_13['Best Error'])
-plt.plot(gen, best_err_13,'*', label = 'Trial_13')
+for i in list(range(1,len(err))):
+    best_err = list(err[i]['Best Error'])
+    plt.plot(gen, best_err,'*', label = f'Trial_{i}')
 
 plt.legend()
 plt.ylabel('Error', fontsize=14)
