@@ -155,7 +155,10 @@ def ind_excel():
     ind_2 = pd.read_excel('Best_ind2.xlsx')
     ind_2 = ind_2.to_dict('index')
 
-    return ind_1, ind_2
+    ind_3 = pd.read_excel('Best_ind3.xlsx')
+    ind_3 = ind_3.to_dict('index')
+
+    return ind_1, ind_2, ind_3
 
 #%%
 def err_excel():
@@ -164,4 +167,6 @@ def err_excel():
 
     err_2 = pd.read_excel('Errors2.xlsx')
 
-    return err_1, err_2
+    err_3 = pd.read_excel('Errors3.xlsx')
+
+    return err_1, err_2, err_3
