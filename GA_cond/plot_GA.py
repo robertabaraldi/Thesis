@@ -6,6 +6,7 @@ import numpy as np
 from functions import baseline_run, plot_GA, plot_cond, ind_excel, err_excel
 import seaborn as sns
 from math import log10
+from scipy.signal import find_peaks
 
 #%%
 ###### PLOT BEST INDIVIDUALS FROM HCM_GA ALGORITHM #######
@@ -13,9 +14,9 @@ from math import log10
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14 = ind_excel()
+ind_1 = ind_excel()
 
-pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14]
+pop = [ind_1]
 
 for i in list(range(0,len(pop))):
     t, v = plot_GA(pop[i])
@@ -28,14 +29,38 @@ plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
 plt.savefig('Plot_Best_Inds.png')
 plt.show()
 
+######## PRINT FEATURES ##########
+ap_features = {}
+mdp = min(v)
+max_p = max(v)
+max_p_idx = np.argmax(v)
+apa = max_p - mdp
+dvdt_max = np.max(np.diff(v[0:30])/np.diff(t[0:30]))
+
+ap_features['dvdt_max'] = dvdt_max
+peak_v = find_peaks(v, distance=100)
+peak = v[peak_v[0][0]]
+ap_features['peak'] = peak
+ap_features['apa']= apa
+
+for apd_pct in [50, 90]:
+    repol_pot = max_p - apa * apd_pct/100
+    idx_apd = np.argmin(np.abs(v[max_p_idx:] - repol_pot))
+    apd_val = t[idx_apd+max_p_idx]
+
+    ap_features[f'apd{apd_pct}'] = apd_val
+
+ap_features['mdp']= mdp
+
+print(ap_features)
+
 #%%
 ############ PLOT BEST ERROR ################
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14 = err_excel()
+err_1 = err_excel()
 
-err = [err_1, err_2, err_3, err_4, err_5, err_6, err_7, 
-err_8, err_9, err_10, err_11, err_12, err_13, err_14]
+err = [err_1]
 
 for i in list(range(0,len(err))):
     best_err = list(err[i]['Best Error'])
@@ -51,7 +76,7 @@ plt.show()
 
 #%% 
 ########## PLOT CONDUCTANCES ############
-pop = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14]
+pop = [ind_1]
 trials = []
 
 for i in list(range(0,len(pop))):
@@ -81,11 +106,9 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
+plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 #plt.legend()
 plt.savefig('Conductances.png')
 plt.show()
-
-# %%
