@@ -52,7 +52,7 @@ for apd_pct in [50, 90]:
 
 ap_features['mdp']= mdp
 
-print(ap_features)
+#print(ap_features)
 
 #%%
 ############ PLOT BEST ERROR ################
@@ -63,14 +63,14 @@ err_1 = err_excel()
 err = [err_1]
 
 for i in list(range(0,len(err))):
-    best_err = list(err[i]['Best Error'])
+    best_err = list(err[i]['Avg Error'])
     plt.plot(gen, best_err,'*', label = f'Trial_{i+1}')
 
 plt.legend()
 plt.ylabel('Error', fontsize=14)
 plt.xlabel('Generation', fontsize=14)
 plt.suptitle('Best Errors', fontsize=14)
-plt.ylim(0,8000)
+plt.ylim(0,5000)
 plt.savefig('Plot_Best_Errors.png')
 plt.show()
 

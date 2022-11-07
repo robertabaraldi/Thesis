@@ -135,8 +135,8 @@ def run_ga(toolbox):
         best.append(best_fit)
     
     # Average and Best Errors in Excel file
-    df_avg_err = pd.DataFrame(best, columns=["Avg Error"])
-    df_best_err = pd.DataFrame(avg, columns=["Best Error"])
+    df_avg_err = pd.DataFrame(avg, columns=["Avg Error"])
+    df_best_err = pd.DataFrame(best, columns=["Best Error"])
     dfe = df_avg_err.join(df_best_err, how="outer")
     dfe.to_excel('Errors.xlsx', sheet_name='Sheet1', index=False)
     

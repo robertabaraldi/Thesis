@@ -15,8 +15,8 @@ def plot_GA(ind):
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
     
-    mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
-    mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
+    #mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
+    #mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
 
     proto.schedule(4, 10, 1, 1000, 0) 
     sim = myokit.Simulation(mod,proto)
@@ -148,13 +148,13 @@ def plot_cond(ind, lab):
 
 #%%
 def ind_excel():
-    ind_1 = pd.read_excel('Best_ind_1.xlsx')
+    ind_1 = pd.read_excel('Best_ind1.xlsx')
     ind_1 = ind_1.to_dict('index')
 
     return ind_1
 
 #%%
 def err_excel():
-    err_1 = pd.read_excel('Errors_1.xlsx')
+    err_1 = pd.read_excel('Errors1.xlsx')
 
     return err_1
