@@ -14,9 +14,9 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1 = ind_excel()
+ind_1, ind_2 = ind_excel()
 
-pop = [ind_1]
+pop = [ind_1, ind_2]
 
 for i in list(range(0,len(pop))):
     t, v = plot_GA(pop[i])
@@ -58,9 +58,9 @@ ap_features['mdp']= mdp
 ############ PLOT BEST ERROR ################
 gen = [i for i in list(range(1,80))]
 
-err_1 = err_excel()
+err_1, err_2 = err_excel()
 
-err = [err_1]
+err = [err_1, err_2]
 
 for i in list(range(0,len(err))):
     best_err = list(err[i]['Avg Error'])
@@ -76,7 +76,6 @@ plt.show()
 
 #%% 
 ########## PLOT CONDUCTANCES ############
-pop = [ind_1]
 trials = []
 
 for i in list(range(0,len(pop))):
