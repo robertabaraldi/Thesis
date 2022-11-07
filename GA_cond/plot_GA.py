@@ -85,6 +85,7 @@ plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto'
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 #plt.legend()
+plt.savefig('Conductances.png')
 plt.show()
 
 # %%

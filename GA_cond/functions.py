@@ -32,8 +32,6 @@ def plot_GA(ind):
     end_ap = start_ap + max_idx
 
     v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
-    t = dat['engine.time']
-    v = dat['membrane.V']
 
     return t_leak,v_leak
 
