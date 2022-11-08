@@ -14,10 +14,10 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_3, ind_4, ind_ctrl1 = ind_excel()
+ind_1, ind_3, ind_4, ind_ctrl1, ind_ctrl2 = ind_excel()
 
 pop_HCM = [ind_1, ind_3, ind_4]
-pop_CTRL = [ind_ctrl1]
+pop_CTRL = [ind_ctrl1, ind_ctrl2]
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
@@ -43,10 +43,10 @@ plt.show()
 ############ PLOT BEST ERROR HCM ################
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_3, err_4, err_ctrl1 = err_excel()
+err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2 = err_excel()
 
 err_HCM = [err_1, err_2, err_3, err_4]
-err_CTRL = [err_ctrl1]
+err_CTRL = [err_ctrl1, err_ctrl2]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
