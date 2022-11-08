@@ -123,29 +123,10 @@ def build_pop(pop):
     
     return ind_list
 
-#%%
-
-def plot_cond(ind, lab):
-
-    curr_x = 0
-    keys = [k for k, v in ind[0].items()]
-
-    for k, g in ind[0].items():
-        g = log10(g)
-        x = curr_x + np.random.normal(0, .01)
-        plt.scatter(x, g, label = f'Trial_{lab}')
-        curr_x += 1
-
-    curr_x = 0
-
-    plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
-    plt.ylim(log10(0.1), log10(10))
-    plt.ylabel('Log10 Conductance', fontsize=14)
-    plt.legend()
 
 #%%
 def ind_excel():
-    ind_1 = pd.read_excel('Best_ind_1.xlsx')
+    '''ind_1 = pd.read_excel('Best_ind_1.xlsx')
     ind_1 = ind_1.to_dict('index')
 
     ind_2 = pd.read_excel('Best_ind_2.xlsx')
@@ -158,7 +139,7 @@ def ind_excel():
     ind_4 = ind_4.to_dict('index')
 
     ind_5 = pd.read_excel('Best_ind_5.xlsx')
-    ind_5 = ind_5.to_dict('index')
+    ind_5 = ind_5.to_dict('index')'''
 
     ind_6 = pd.read_excel('Best_ind_6.xlsx')
     ind_6 = ind_6.to_dict('index')
@@ -169,7 +150,7 @@ def ind_excel():
     ind_8 = pd.read_excel('Best_ind_8.xlsx')
     ind_8 = ind_8.to_dict('index')
 
-    ind_9 = pd.read_excel('Best_ind_9.xlsx')
+    '''ind_9 = pd.read_excel('Best_ind_9.xlsx')
     ind_9 = ind_9.to_dict('index')
 
     ind_10 = pd.read_excel('Best_ind_10.xlsx')
@@ -185,13 +166,13 @@ def ind_excel():
     ind_13 = ind_13.to_dict('index')
 
     ind_14 = pd.read_excel('Best_ind_14.xlsx')
-    ind_14 = ind_14.to_dict('index')
+    ind_14 = ind_14.to_dict('index')'''
 
-    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14
+    return ind_6, ind_7, ind_8 #ind_9, ind_10, ind_11, ind_12, ind_13, ind_14
 
 #%%
 def err_excel():
-    err_1 = pd.read_excel('Errors_1.xlsx')
+    '''err_1 = pd.read_excel('Errors_1.xlsx')
 
     err_2 = pd.read_excel('Errors_2.xlsx')
 
@@ -199,7 +180,7 @@ def err_excel():
 
     err_4 = pd.read_excel('Errors_4.xlsx')
 
-    err_5 = pd.read_excel('Errors_5.xlsx')
+    err_5 = pd.read_excel('Errors_5.xlsx')'''
 
     err_6 = pd.read_excel('Errors_6.xlsx')
 
@@ -207,7 +188,7 @@ def err_excel():
 
     err_8 = pd.read_excel('Errors_8.xlsx')
 
-    err_9 = pd.read_excel('Errors_9.xlsx')
+    '''err_9 = pd.read_excel('Errors_9.xlsx')
 
     err_10 = pd.read_excel('Errors_10.xlsx')
 
@@ -217,6 +198,6 @@ def err_excel():
 
     err_13 = pd.read_excel('Errors_13.xlsx')
     
-    err_14 = pd.read_excel('Errors_14.xlsx')
+    err_14 = pd.read_excel('Errors_14.xlsx')'''
 
-    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14
+    return err_6, err_7, err_8 #err_9, err_10, err_11, err_12, err_13, err_14
