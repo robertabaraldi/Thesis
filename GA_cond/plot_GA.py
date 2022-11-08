@@ -14,9 +14,9 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_3, ind_4, ind_ctrl1, ind_ctrl2 = ind_excel()
+ind_3, ind_4, ind_5, ind_ctrl1, ind_ctrl2 = ind_excel()
 
-pop_HCM = [ind_1, ind_3, ind_4]
+pop_HCM = [ind_3, ind_4, ind_5]
 pop_CTRL = [ind_ctrl1, ind_ctrl2]
 
 for i in list(range(0,len(pop_HCM))):
@@ -43,9 +43,9 @@ plt.show()
 ############ PLOT BEST ERROR HCM ################
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2 = err_excel()
+err_3, err_4, err_5, err_ctrl1, err_ctrl2 = err_excel()
 
-err_HCM = [err_1, err_2, err_3, err_4]
+err_HCM = [err_3, err_4, err_5]
 err_CTRL = [err_ctrl1, err_ctrl2]
 
 for i in list(range(0,len(err_HCM))):
@@ -71,6 +71,11 @@ plt.show()
 #%% 
 ########## PLOT HCM CONDUCTANCES ############
 
+trials = []
+
+for i in list(range(0,len(pop_HCM))):
+    trials.append(f'Trial_HCM_{i+1}')
+
 keys = [k for k in pop_HCM[0][0].keys()]
 empty_arrs = [[] for i in range(len(keys))]
 all_ind_dict = dict(zip(keys, empty_arrs))
@@ -80,17 +85,22 @@ for ind in pop_HCM:
             all_ind_dict[k].append(v)
 
 curr_x = 0
-n = 0
+m = 0
+c = ['lightsteelblue', 'cornflowerblue', 'royalblue', 'blue', 'mediumblue', 'darkblue', 
+'lightgreen', 'limegreen','mediumseagreen', 'green', 'darkgreen', 'r']
 
 for k, conds in all_ind_dict.items():
     for i, g in enumerate(conds):
         g = log10(g)
         x = curr_x + np.random.normal(0, .01)
-        plt.scatter(x, g) #label = trials[n])
+        if m == 0:
+            plt.scatter(x, g, color=c[i], label = trials[i])
+            plt.legend()
+        else:
+            plt.scatter(x, g, color=c[i])
+    m = 1
 
     curr_x += 1
-
-    n += 1
 
 curr_x = 0
 
@@ -99,11 +109,15 @@ plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto'
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 plt.suptitle('Conductances_HCM')
-#plt.legend()
 plt.savefig('Conductances_HCM.png')
 plt.show()
 
 ########## PLOT CTRL CONDUCTANCES ############
+
+trials = []
+
+for i in list(range(0,len(pop_CTRL))):
+    trials.append(f'Trial_CTRL_{i+1}')
 
 keys = [k for k in pop_CTRL[0][0].keys()]
 empty_arrs = [[] for i in range(len(keys))]
@@ -114,17 +128,22 @@ for ind in pop_CTRL:
             all_ind_dict[k].append(v)
 
 curr_x = 0
-n = 0
+m = 0
+c = ['lightsteelblue', 'cornflowerblue', 'royalblue', 'blue', 'mediumblue', 'darkblue', 
+'lightgreen', 'limegreen','mediumseagreen', 'green', 'darkgreen', 'r']
 
 for k, conds in all_ind_dict.items():
     for i, g in enumerate(conds):
         g = log10(g)
         x = curr_x + np.random.normal(0, .01)
-        plt.scatter(x, g) #label = trials[n])
+        if m == 0:
+            plt.scatter(x, g, color=c[i], label = trials[i])
+            plt.legend()
+        else:
+            plt.scatter(x, g, color=c[i])
+    m = 1
 
     curr_x += 1
-
-    n += 1
 
 curr_x = 0
 
@@ -133,7 +152,6 @@ plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto'
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 plt.suptitle('Conductances_CTRL')
-#plt.legend()
 plt.savefig('Conductances_CTRL.png')
 plt.show()
 
