@@ -3,7 +3,7 @@ import myokit
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from functions import baseline_run, plot_GA, plot_cond, ind_excel, err_excel
+from functions import baseline_run, plot_GA, ind_excel, err_excel
 import seaborn as sns
 from math import log10
 from scipy.signal import find_peaks
@@ -14,27 +14,56 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_3, ind_4, ind_5, ind_ctrl1, ind_ctrl2 = ind_excel()
+ind_5, ind_7, ind_8, ind_ctrl1, ind_ctrl2, ind_ctrl4 = ind_excel()
 
-pop_HCM = [ind_3, ind_4, ind_5]
-pop_CTRL = [ind_ctrl1, ind_ctrl2]
+pop_HCM = [ind_5, ind_7, ind_8]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl4]
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
     plt.plot(t, v, label = f'Trial_HCM_{i+1}')
 
-plt.legend()
+plt.legend(loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
-plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
+plt.suptitle('Best Individuals HCM: pop = 100, gen = 80', fontsize=14)
+plt.savefig('Plot_Best_Inds_HCM.png')
+plt.show()
+
 
 ####### PLOT CTRL BEST IND ########
+
+t, v = baseline_run()
+plt.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
     plt.plot(t, v, label = f'Trial_CTRL_{i+1}')
 
-plt.legend()
+plt.legend(loc='upper right')
+plt.ylabel('Voltage (mV)', fontsize=14)
+plt.xlabel('Time (ms)', fontsize=14)
+plt.suptitle('Best Individuals CTRL: pop = 100, gen = 80', fontsize=14)
+plt.savefig('Plot_Best_Inds_CTRL.png')
+plt.show()
+
+######## PLOT TOGETHER HCM AND CTRL ############
+
+t, v = baseline_run()
+plt.plot(t, v, '-k', label = 'Baseline')
+
+for i in list(range(0,len(pop_HCM))):
+    t, v = plot_GA(pop_HCM[i])
+    plt.plot(t, v, label = f'Trial_HCM_{i+1}')
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v = plot_GA(pop_CTRL[i])
+    plt.plot(t, v, label = f'Trial_CTRL_{i+1}')
+
+plt.legend(loc='upper right')
+plt.ylabel('Voltage (mV)', fontsize=14)
+plt.xlabel('Time (ms)', fontsize=14)
+plt.suptitle('Best Individuals: pop = 100, gen = 80', fontsize=14)
 plt.savefig('Plot_Best_Inds.png')
 plt.show()
 
@@ -43,21 +72,22 @@ plt.show()
 ############ PLOT BEST ERROR HCM ################
 gen = [i for i in list(range(1,80))]
 
-err_3, err_4, err_5, err_ctrl1, err_ctrl2 = err_excel()
+err_5, err_7, err_8, err_ctrl1, err_ctrl2, err_ctrl4 = err_excel()
 
-err_HCM = [err_3, err_4, err_5]
-err_CTRL = [err_ctrl1, err_ctrl2]
+err_HCM = [err_5, err_7, err_8]
+err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl4]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
     plt.plot(gen, best_err,'*', label = f'Trial_HCM_{i+1}')
 
-plt.legend()
+plt.legend(loc='upper right')
 plt.ylabel('Error', fontsize=14)
 plt.xlabel('Generation', fontsize=14)
-plt.suptitle('Best Errors', fontsize=14)
+plt.suptitle('Best Errors HCM', fontsize=14)
 plt.ylim(0,5000)
-plt.savefig('Plot_Best_Errors.png')
+plt.savefig('Plot_Best_Errors_HCM.png')
+plt.show()
 
 ############ PLOT BEST ERROR CTRL ################
 
@@ -65,8 +95,14 @@ for i in list(range(0,len(err_CTRL))):
     best_err = list(err_CTRL[i]['Best Error'])
     plt.plot(gen, best_err,'*', label = f'Trial_CTRL_{i+1}')
 
-plt.legend()
+plt.legend(loc='upper right')
+plt.ylabel('Error', fontsize=14)
+plt.xlabel('Generation', fontsize=14)
+plt.suptitle('Best Errors CTRL', fontsize=14)
+plt.ylim(0,5000)
+plt.savefig('Plot_Best_Errors_CTRL.png')
 plt.show()
+
 
 #%% 
 ########## PLOT HCM CONDUCTANCES ############

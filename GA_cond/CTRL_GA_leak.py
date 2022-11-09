@@ -313,6 +313,8 @@ def get_normal_sim_dat(ind):
         for k, v in ind[0].items():
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
+        mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
+        mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
     else:
         mod['membrane']['gLeak'].set_rhs(0.2)
 
@@ -436,7 +438,7 @@ def plot_generation(inds,
     df.to_excel('Best_ind.xlsx', sheet_name='Sheet1', index=False)
 
 #%%
-def start_ga(pop_size=100, max_generations=20):
+def start_ga(pop_size=100, max_generations=80):
     feature_targets  =     {'dvdt_max': [6.72, 7.15, 7.58],
                              'peak': [21.4, 24.1, 26.8],
                              'apa': [73.6, 79.68, 85.76],

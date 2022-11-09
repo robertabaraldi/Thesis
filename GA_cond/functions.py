@@ -127,26 +127,6 @@ def build_pop(pop):
     return ind_list
 
 #%%
-
-def plot_cond(ind, lab):
-
-    curr_x = 0
-    keys = [k for k, v in ind[0].items()]
-
-    for k, g in ind[0].items():
-        g = log10(g)
-        x = curr_x + np.random.normal(0, .01)
-        plt.scatter(x, g, label = f'Trial_{lab}')
-        curr_x += 1
-
-    curr_x = 0
-
-    plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
-    plt.ylim(log10(0.1), log10(10))
-    plt.ylabel('Log10 Conductance', fontsize=14)
-    plt.legend()
-
-#%%
 def ind_excel():
 
     #ind_1 = pd.read_excel('Best_ind1.xlsx')
@@ -155,14 +135,23 @@ def ind_excel():
     #ind_2 = pd.read_excel('Best_ind2.xlsx')
     #ind_2 = ind_2.to_dict('index')
 
-    ind_3 = pd.read_excel('Best_ind3.xlsx')
-    ind_3 = ind_3.to_dict('index')
+    #ind_3 = pd.read_excel('Best_ind3.xlsx')
+    #ind_3 = ind_3.to_dict('index')
 
-    ind_4 = pd.read_excel('Best_ind4.xlsx')
-    ind_4 = ind_4.to_dict('index')
+    #ind_4 = pd.read_excel('Best_ind4.xlsx')
+    #ind_4 = ind_4.to_dict('index')
 
     ind_5 = pd.read_excel('Best_ind5.xlsx')
     ind_5 = ind_5.to_dict('index')
+
+    #ind_6 = pd.read_excel('Best_ind6.xlsx')
+    #ind_6 = ind_6.to_dict('index')
+
+    ind_7 = pd.read_excel('Best_ind7.xlsx')
+    ind_7 = ind_7.to_dict('index')
+
+    ind_8 = pd.read_excel('Best_ind8.xlsx')
+    ind_8 = ind_8.to_dict('index')
 
     ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
     ind_ctrl1 = ind_ctrl1.to_dict('index')
@@ -170,7 +159,13 @@ def ind_excel():
     ind_ctrl2 = pd.read_excel('Best_ind_ctrl2.xlsx')
     ind_ctrl2 = ind_ctrl2.to_dict('index')
 
-    return ind_3, ind_4, ind_5, ind_ctrl1, ind_ctrl2
+    #ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
+    #ind_ctrl3 = ind_ctrl3.to_dict('index')
+
+    ind_ctrl4 = pd.read_excel('Best_ind_ctrl4.xlsx')
+    ind_ctrl4 = ind_ctrl4.to_dict('index')
+
+    return ind_5, ind_7, ind_8, ind_ctrl1, ind_ctrl2, ind_ctrl4
 
 #%%
 def err_excel():
@@ -179,14 +174,24 @@ def err_excel():
 
     #err_2 = pd.read_excel('Errors2.xlsx')
 
-    err_3 = pd.read_excel('Errors3.xlsx')
+    #err_3 = pd.read_excel('Errors3.xlsx')
 
-    err_4 = pd.read_excel('Errors4.xlsx')
+    #err_4 = pd.read_excel('Errors4.xlsx')
 
     err_5 = pd.read_excel('Errors5.xlsx')
+
+    #err_6 = pd.read_excel('Errors6.xlsx')
+
+    err_7 = pd.read_excel('Errors7.xlsx')
+
+    err_8 = pd.read_excel('Errors8.xlsx')
 
     err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
 
     err_ctrl2 = pd.read_excel('Errors_ctrl2.xlsx')
 
-    return err_3, err_4, err_5, err_ctrl1, err_ctrl2
+    #err_ctrl3 = pd.read_excel('Errors_ctrl3.xlsx')
+
+    err_ctrl4 = pd.read_excel('Errors_ctrl4.xlsx')
+
+    return err_5, err_7, err_8, err_ctrl1, err_ctrl2, err_ctrl4
