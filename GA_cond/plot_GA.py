@@ -14,10 +14,10 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_5, ind_7, ind_8, ind_ctrl1, ind_ctrl2, ind_ctrl4 = ind_excel()
+ind_5, ind_7, ind_8, ind_9, ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5 = ind_excel()
 
-pop_HCM = [ind_5, ind_7, ind_8]
-pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl4]
+pop_HCM = [ind_5, ind_7, ind_8, ind_9]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5]
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
@@ -72,10 +72,10 @@ plt.show()
 ############ PLOT BEST ERROR HCM ################
 gen = [i for i in list(range(1,80))]
 
-err_5, err_7, err_8, err_ctrl1, err_ctrl2, err_ctrl4 = err_excel()
+err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5 = err_excel()
 
-err_HCM = [err_5, err_7, err_8]
-err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl4]
+err_HCM = [err_5, err_7, err_8, err_9]
+err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
@@ -106,7 +106,7 @@ plt.show()
 
 #%% 
 ########## PLOT HCM CONDUCTANCES ############
-
+plt.figure(figsize=(12,6))
 trials = []
 
 for i in list(range(0,len(pop_HCM))):
@@ -150,6 +150,7 @@ plt.show()
 
 ########## PLOT CTRL CONDUCTANCES ############
 
+plt.figure(figsize=(12,6))
 trials = []
 
 for i in list(range(0,len(pop_CTRL))):
