@@ -69,7 +69,7 @@ def baseline_run():
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-1000))
+    max_idx = np.argmin(np.abs(t-900))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -78,8 +78,8 @@ def baseline_run():
     first_peak = peak_v[0][0] #first is to choose between the peaks and the peak_height, then to choose the first peak
 
     t_leak = t_leak[0:first_peak]
-    n_array = 1000 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
-    t_array = np.array([i+1 for i in range(int(t[first_peak]),1000)])
+    n_array = 900 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
+    t_array = np.array([i+1 for i in range(int(t[first_peak]),900)])
     v_leak = v_leak[0:first_peak]
     last_v = v_leak[-1] #last potential value
     v_array = np.full(int(n_array+1),last_v)
@@ -223,7 +223,7 @@ def stim(ind):
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-1000))
+    max_idx = np.argmin(np.abs(t-900))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -231,24 +231,24 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.3, 2510, 480, 1000, 1)
+    proto.schedule(0.07, 2510, 480, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
-    '''i_stim = dat_rrc['stimulus.i_stim']
+    i_stim = dat_rrc['stimulus.i_stim']
     peaks = find_peaks(-np.array(i_stim), distance=100)[0]
     start_ap = peaks[-3] 
     end_ap = peaks[-2]
 
     t = np.array(dat_rrc['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-1000))
+    max_idx = np.argmin(np.abs(t-900))
     t_rrc = t[0:max_idx]
     end_ap = start_ap + max_idx
 
-    v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])'''
+    v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])
 
-    t_rrc = dat_rrc['engine.time']
-    v_rrc = dat_rrc['membrane.V']
+    #t_rrc = dat_rrc['engine.time']
+    #v_rrc = dat_rrc['membrane.V']
 
     return t_leak, v_leak, t_rrc, v_rrc

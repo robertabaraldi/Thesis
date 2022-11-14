@@ -7,6 +7,7 @@ from math import log10
 from scipy.signal import find_peaks
 
 #%%
+plt.figure(figsize=(12,6))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
@@ -14,10 +15,12 @@ ind_5, ind_7, ind_8, ind_9, ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5 = ind_exc
 
 pop_HCM = [ind_5, ind_7, ind_8, ind_9]
 
+c = ['limegreen', 'darkgreen', 'cornflowerblue', 'royalblue']
 
 for i in list(range(0,len(pop_HCM))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_HCM[i])
-    plt.plot(t_rrc, v_rrc, label = f'Trial_Stim_HCM_{i+1}')
+    plt.plot(t_leak, v_leak, color=c[i], label = f'Trial_Stim_HCM_{i+1}')
+    plt.plot(t_rrc, v_rrc, color=c[i], label = f'Trial_Stim_HCM_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
