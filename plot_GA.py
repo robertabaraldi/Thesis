@@ -1,12 +1,9 @@
 #%%
 import myokit
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
 from functions import baseline_run, plot_GA, ind_excel, err_excel
-import seaborn as sns
 from math import log10
-from scipy.signal import find_peaks
 
 #%%
 ###### PLOT HCM BEST IND #######
@@ -14,10 +11,10 @@ from scipy.signal import find_peaks
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1 = ind_excel()
+ind_1, ind_2, ind_ctrl1 = ind_excel()
 
-pop_HCM = [ind_1]
-pop_CTRL = []
+pop_HCM = [ind_1, ind_2]
+pop_CTRL = [ind_ctrl1]
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
@@ -72,10 +69,10 @@ plt.show()
 ############ PLOT BEST ERROR HCM ################
 gen = [i for i in list(range(1,80))]
 
-err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5 = err_excel()
+err_1, err_2, err_ctrl1 = err_excel()
 
-err_HCM = [err_5, err_7, err_8, err_9]
-err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5]
+err_HCM = [err_1, err_2]
+err_CTRL = [err_ctrl1]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
@@ -141,7 +138,7 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
+plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 plt.suptitle('Conductances_HCM')
@@ -185,7 +182,7 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
+plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 plt.suptitle('Conductances_CTRL')

@@ -9,7 +9,7 @@ from scipy.signal import find_peaks
 
 #%%
 def plot_GA(ind):
-    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
 
     for k, v in ind[0].items():
             k1, k2 = k.split('.')
@@ -129,11 +129,58 @@ def ind_excel():
     ind_1 = pd.read_excel('Best_ind_1.xlsx')
     ind_1 = ind_1.to_dict('index')
 
-    return ind_1
+    ind_2 = pd.read_excel('Best_ind_2.xlsx')
+    ind_2 = ind_2.to_dict('index')
+
+    ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
+    ind_ctrl1 = ind_ctrl1.to_dict('index')
+
+    return ind_1, ind_2, ind_ctrl1
 
 #%%
 def err_excel():
 
     err_1 = pd.read_excel('Errors_1.xlsx')
 
-    return err_1
+    err_2 = pd.read_excel('Errors_2.xlsx')
+
+    err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
+
+    return err_1, err_2, err_ctrl1
+
+#%%
+def stim(ind):
+    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
+
+    for k, v in ind[0].items():
+            k1, k2 = k.split('.')
+            mod[k1][k2].set_rhs(v)
+
+    proto.schedule(4, 10, 1, 1000, 0) 
+    sim = myokit.Simulation(mod,proto)
+    sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
+    dat = sim.run(50000)
+
+    i_stim = dat['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2]
+
+    t = np.array(dat['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-1000))
+    t_leak = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+
+    sim.reset()
+
+    proto.schedule(0.3, 2510, 480, 1000, 1)
+    sim.set_protocol(proto)
+    dat_rrc = sim.run(5000)
+
+    t_rrc = dat_rrc['engine.time']
+    v_rrc = dat_rrc['membrane.V']
+
+    return t_leak, v_leak, t_rrc, v_rrc
