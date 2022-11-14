@@ -14,9 +14,6 @@ def plot_GA(ind):
     for k, v in ind[0].items():
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
-    
-    #mod['ik1']['g_K1'].set_rhs(mod['ik1']['g_K1'].value()*(11.24/5.67))
-    #mod['ina']['g_Na'].set_rhs(mod['ina']['g_Na'].value()*(187/129))
 
     proto.schedule(4, 10, 1, 1000, 0) 
     sim = myokit.Simulation(mod,proto)
@@ -205,3 +202,53 @@ def err_excel():
     err_ctrl5 = pd.read_excel('Errors_ctrl5.xlsx')
 
     return err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5
+
+#%%
+def stim(ind):
+    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+
+    for k, v in ind[0].items():
+            k1, k2 = k.split('.')
+            mod[k1][k2].set_rhs(v)
+
+    proto.schedule(4, 10, 1, 1000, 0) 
+    sim = myokit.Simulation(mod,proto)
+    sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
+    dat = sim.run(50000)
+
+    i_stim = dat['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2]
+
+    t = np.array(dat['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-1000))
+    t_leak = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+
+    sim.reset()
+
+    proto.schedule(0.3, 2510, 480, 1000, 1)
+    sim.set_protocol(proto)
+    dat_rrc = sim.run(5000)
+
+    '''i_stim = dat_rrc['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2]
+
+    t = np.array(dat_rrc['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-1000))
+    t_rrc = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])'''
+
+    t_rrc = dat_rrc['engine.time']
+    v_rrc = dat_rrc['membrane.V']
+
+    return t_leak, v_leak, t_rrc, v_rrc
