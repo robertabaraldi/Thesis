@@ -138,7 +138,7 @@ def ind_excel():
     ind_ctrl2 = pd.read_excel('Best_ind_ctrl2.xlsx')
     ind_ctrl2 = ind_ctrl2.to_dict('index')
 
-    ind_ctrl3 = pd.read_excel('Best_ind_ctrl1.xlsx')
+    ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
     ind_ctrl3 = ind_ctrl3.to_dict('index')
 
     return ind_1, ind_2, ind_ctrl1, ind_ctrl2, ind_ctrl3
@@ -160,7 +160,7 @@ def err_excel():
 
 #%%
 def stim(ind):
-    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+    mod, proto, x = myokit.load('./paci-2013-ventricular-leak-fixed.mmt')
 
     for k, v in ind[0].items():
             k1, k2 = k.split('.')
@@ -186,7 +186,7 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.04, 2510, 480, 1000, 1)
+    proto.schedule(0.035, 2510, 480, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
@@ -202,5 +202,8 @@ def stim(ind):
     end_ap = start_ap + max_idx
 
     v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])
+
+    #t_rrc = dat_rrc['engine.time']
+    #v_rrc = dat_rrc['membrane.V']
 
     return t_leak, v_leak, t_rrc, v_rrc

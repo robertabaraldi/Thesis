@@ -12,9 +12,9 @@ plt.figure(figsize=(12,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4 = ind_excel()
+ind_1, ind_2, ind_ctrl1, ind_ctrl2, ind_ctrl3 = ind_excel()
 
-pop_HCM = [ind_1, ind_2, ind_3, ind_4]
+pop_HCM = [ind_1, ind_2]
 c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkblue']
 
 for i in list(range(0,len(pop_HCM))):
@@ -34,7 +34,7 @@ plt.figure(figsize=(12,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3]
 c_CTRL = ['lime', 'limegreen', 'green', 'darkgreen']
 
 for i in list(range(0,len(pop_CTRL))):
@@ -50,7 +50,7 @@ plt.savefig('Plot_Stim_CTRL.png')
 plt.show()
 
 ################ PLOT TOGETHER STIMULATED POPULATIONS ###############
-plt.figure(figsize=(12,8))
+'''plt.figure(figsize=(12,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
@@ -67,6 +67,6 @@ plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
 plt.suptitle('Best Individuals - Stimulus Injection', fontsize=14)
 plt.savefig('Plot_Stim.png')
-plt.show()
+plt.show()'''
 
 # %%
