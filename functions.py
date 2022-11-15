@@ -69,7 +69,7 @@ def baseline_run():
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-900))
+    max_idx = np.argmin(np.abs(t-980))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -78,8 +78,8 @@ def baseline_run():
     first_peak = peak_v[0][0] #first is to choose between the peaks and the peak_height, then to choose the first peak
 
     t_leak = t_leak[0:first_peak]
-    n_array = 900 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
-    t_array = np.array([i+1 for i in range(int(t[first_peak]),900)])
+    n_array = 1000 - t[first_peak] #compute time needed to arrive to 1000ms after end of AP
+    t_array = np.array([i+1 for i in range(int(t[first_peak]),1000)])
     v_leak = v_leak[0:first_peak]
     last_v = v_leak[-1] #last potential value
     v_array = np.full(int(n_array+1),last_v)
@@ -150,7 +150,10 @@ def ind_excel():
     ind_ctrl4 = pd.read_excel('Best_ind_ctrl4.xlsx')
     ind_ctrl4 = ind_ctrl4.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4
+    ind_ctrl5 = pd.read_excel('Best_ind_ctrl5.xlsx')
+    ind_ctrl5 = ind_ctrl5.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5
 
 #%%
 def err_excel():
@@ -171,7 +174,9 @@ def err_excel():
 
     err_ctrl4 = pd.read_excel('Errors_ctrl4.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4
+    err_ctrl5 = pd.read_excel('Errors_ctrl5.xlsx')
+
+    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5
 
 #%%
 def stim(ind):
@@ -193,7 +198,7 @@ def stim(ind):
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-900))
+    max_idx = np.argmin(np.abs(t-980))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -201,7 +206,7 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.04, 2510, 480, 1000, 1)
+    proto.schedule(0.045, 2510, 480, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
@@ -212,7 +217,7 @@ def stim(ind):
 
     t = np.array(dat_rrc['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-900))
+    max_idx = np.argmin(np.abs(t-980))
     t_rrc = t[0:max_idx]
     end_ap = start_ap + max_idx
 

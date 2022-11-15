@@ -11,12 +11,12 @@ plt.figure(figsize=(12,6))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4 = ind_excel()
+ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5 = ind_excel()
 
 pop_HCM = [ind_1, ind_2, ind_3, ind_4]
-pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4]
-c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkblue']
-c_CTRL = ['lime', 'limegreen', 'green', 'darkgreen']
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5]
+c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkcyan', 'darkblue']
+c_CTRL = ['lime', 'limegreen', 'olivedrab', 'green', 'darkgreen']
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
@@ -72,10 +72,10 @@ plt.show()
 plt.figure(figsize=(12,6))
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4 = err_excel()
+err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5 = err_excel()
 
 err_HCM = [err_1, err_2, err_3, err_4]
-err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4]
+err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
