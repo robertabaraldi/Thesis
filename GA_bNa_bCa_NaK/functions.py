@@ -27,7 +27,7 @@ def plot_GA(ind):
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-1000))
+    max_idx = np.argmin(np.abs(t-900))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -231,12 +231,12 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.07, 2510, 480, 1000, 1)
+    proto.schedule(0.04, 2510, 480, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
     i_stim = dat_rrc['stimulus.i_stim']
-    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    peaks = find_peaks(-np.array(i_stim), height=10, distance=100)[0]
     start_ap = peaks[-3] 
     end_ap = peaks[-2]
 
@@ -247,8 +247,5 @@ def stim(ind):
     end_ap = start_ap + max_idx
 
     v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])
-
-    #t_rrc = dat_rrc['engine.time']
-    #v_rrc = dat_rrc['membrane.V']
 
     return t_leak, v_leak, t_rrc, v_rrc
