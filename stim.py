@@ -8,13 +8,13 @@ from scipy.signal import find_peaks
 
 #%%
 ############## STIMULATED HCM POPULATION ##############
-plt.figure(figsize=(12,8))
+plt.figure(figsize=(14,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5 = ind_excel()
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5 = ind_excel()
 
-pop_HCM = [ind_1, ind_2, ind_3, ind_4]
+pop_HCM = [ind_1, ind_2, ind_3, ind_4, ind_5]
 c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkcyan', 'darkblue']
 
 for i in list(range(0,len(pop_HCM))):
@@ -30,7 +30,7 @@ plt.savefig('Plot_Stim_HCM.png')
 plt.show()
 
 ############## STIMULATED CTRL POPULATION ##############
-plt.figure(figsize=(12,8))
+plt.figure(figsize=(14,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
