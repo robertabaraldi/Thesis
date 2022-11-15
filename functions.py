@@ -147,7 +147,10 @@ def ind_excel():
     ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
     ind_ctrl3 = ind_ctrl3.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3
+    ind_ctrl4 = pd.read_excel('Best_ind_ctrl4.xlsx')
+    ind_ctrl4 = ind_ctrl4.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4
 
 #%%
 def err_excel():
@@ -166,7 +169,9 @@ def err_excel():
 
     err_ctrl3 = pd.read_excel('Errors_ctrl3.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3
+    err_ctrl4 = pd.read_excel('Errors_ctrl4.xlsx')
+
+    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4
 
 #%%
 def stim(ind):
