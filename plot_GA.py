@@ -7,18 +7,20 @@ from math import log10
 
 #%%
 ###### PLOT HCM BEST IND #######
-
+plt.figure(figsize=(12,6))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
-ind_1, ind_2, ind_ctrl1 = ind_excel()
+ind_1, ind_2, ind_ctrl1, ind_ctrl2, ind_ctrl3 = ind_excel()
 
 pop_HCM = [ind_1, ind_2]
-pop_CTRL = [ind_ctrl1]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3]
+c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkblue']
+c_CTRL = ['lime', 'limegreen', 'green', 'darkgreen']
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
-    plt.plot(t, v, label = f'Trial_HCM_{i+1}')
+    plt.plot(t, v, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -29,13 +31,13 @@ plt.show()
 
 
 ####### PLOT CTRL BEST IND ########
-
+plt.figure(figsize=(12,6))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
-    plt.plot(t, v, label = f'Trial_CTRL_{i+1}')
+    plt.plot(t, v, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -45,17 +47,17 @@ plt.savefig('Plot_Best_Inds_CTRL.png')
 plt.show()
 
 ######## PLOT TOGETHER HCM AND CTRL ############
-
+plt.figure(figsize=(12,6))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
-    plt.plot(t, v, label = f'Trial_HCM_{i+1}')
+    plt.plot(t, v, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
 
 for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
-    plt.plot(t, v, label = f'Trial_CTRL_{i+1}')
+    plt.plot(t, v, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
@@ -67,16 +69,17 @@ plt.show()
 
 #%%
 ############ PLOT BEST ERROR HCM ################
+plt.figure(figsize=(12,6))
 gen = [i for i in list(range(1,80))]
 
-err_1, err_2, err_ctrl1 = err_excel()
+err_1, err_2, err_ctrl1, err_ctrl2, err_ctrl3 = err_excel()
 
 err_HCM = [err_1, err_2]
-err_CTRL = [err_ctrl1]
+err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl3]
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
-    plt.plot(gen, best_err,'*', label = f'Trial_HCM_{i+1}')
+    plt.plot(gen, best_err,'*', color=c_HCM[i], label = f'Trial_HCM_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Error', fontsize=14)
@@ -87,10 +90,11 @@ plt.savefig('Plot_Best_Errors_HCM.png')
 plt.show()
 
 ############ PLOT BEST ERROR CTRL ################
+plt.figure(figsize=(12,6))
 
 for i in list(range(0,len(err_CTRL))):
     best_err = list(err_CTRL[i]['Best Error'])
-    plt.plot(gen, best_err,'*', label = f'Trial_CTRL_{i+1}')
+    plt.plot(gen, best_err,'*', color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
 
 plt.legend(loc='upper right')
 plt.ylabel('Error', fontsize=14)
@@ -119,18 +123,16 @@ for ind in pop_HCM:
 
 curr_x = 0
 m = 0
-c = ['lightsteelblue', 'cornflowerblue', 'royalblue', 'blue', 'mediumblue', 'darkblue', 
-'lightgreen', 'limegreen','mediumseagreen', 'green', 'darkgreen', 'r']
 
 for k, conds in all_ind_dict.items():
     for i, g in enumerate(conds):
         g = log10(g)
         x = curr_x + np.random.normal(0, .01)
         if m == 0:
-            plt.scatter(x, g, color=c[i], label = trials[i])
+            plt.scatter(x, g, color=c_HCM[i], label = trials[i])
             plt.legend()
         else:
-            plt.scatter(x, g, color=c[i])
+            plt.scatter(x, g, color=c_HCM[i])
     m = 1
 
     curr_x += 1
@@ -163,18 +165,16 @@ for ind in pop_CTRL:
 
 curr_x = 0
 m = 0
-c = ['lightsteelblue', 'cornflowerblue', 'royalblue', 'blue', 'mediumblue', 'darkblue', 
-'lightgreen', 'limegreen','mediumseagreen', 'green', 'darkgreen', 'r']
 
 for k, conds in all_ind_dict.items():
     for i, g in enumerate(conds):
         g = log10(g)
         x = curr_x + np.random.normal(0, .01)
         if m == 0:
-            plt.scatter(x, g, color=c[i], label = trials[i])
+            plt.scatter(x, g, color=c_CTRL[i], label = trials[i])
             plt.legend()
         else:
-            plt.scatter(x, g, color=c[i])
+            plt.scatter(x, g, color=c_CTRL[i])
     m = 1
 
     curr_x += 1
