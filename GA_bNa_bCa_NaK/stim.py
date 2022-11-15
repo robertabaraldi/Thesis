@@ -15,7 +15,6 @@ plt.plot(t, v, '-k', label = 'Baseline')
 ind_5, ind_7, ind_8, ind_9, ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5 = ind_excel()
 
 pop_HCM = [ind_5, ind_7, ind_8, ind_9]
-
 c_HCM = ['cyan', 'dodgerblue', 'blue', 'darkblue']
 
 for i in list(range(0,len(pop_HCM))):
@@ -34,8 +33,6 @@ plt.show()
 plt.figure(figsize=(12,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
-
-ind_5, ind_7, ind_8, ind_9, ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5 = ind_excel()
 
 pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5]
 c_CTRL = ['lime', 'limegreen', 'green', 'darkgreen']
