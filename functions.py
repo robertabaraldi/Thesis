@@ -132,6 +132,12 @@ def ind_excel():
     ind_2 = pd.read_excel('Best_ind_2.xlsx')
     ind_2 = ind_2.to_dict('index')
 
+    ind_3 = pd.read_excel('Best_ind_3.xlsx')
+    ind_3 = ind_3.to_dict('index')
+
+    ind_4 = pd.read_excel('Best_ind_4.xlsx')
+    ind_4 = ind_4.to_dict('index')
+
     ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
     ind_ctrl1 = ind_ctrl1.to_dict('index')
 
@@ -141,7 +147,7 @@ def ind_excel():
     ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
     ind_ctrl3 = ind_ctrl3.to_dict('index')
 
-    return ind_1, ind_2, ind_ctrl1, ind_ctrl2, ind_ctrl3
+    return ind_1, ind_2, ind_3, ind_4, ind_ctrl1, ind_ctrl2, ind_ctrl3
 
 #%%
 def err_excel():
@@ -150,13 +156,17 @@ def err_excel():
 
     err_2 = pd.read_excel('Errors_2.xlsx')
 
+    err_3 = pd.read_excel('Errors_3.xlsx')
+
+    err_4 = pd.read_excel('Errors_4.xlsx')
+
     err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
 
     err_ctrl2 = pd.read_excel('Errors_ctrl2.xlsx')
 
     err_ctrl3 = pd.read_excel('Errors_ctrl3.xlsx')
 
-    return err_1, err_2, err_ctrl1, err_ctrl2, err_ctrl3
+    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3
 
 #%%
 def stim(ind):
@@ -186,7 +196,7 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.035, 2510, 480, 1000, 1)
+    proto.schedule(0.04, 2510, 480, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
