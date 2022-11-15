@@ -8,7 +8,7 @@ from scipy.signal import find_peaks
 
 #%%
 ############## STIMULATED HCM POPULATION ##############
-plt.figure(figsize=(12,8))
+plt.figure(figsize=(14,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
@@ -30,7 +30,7 @@ plt.savefig('Plot_Stim_HCM.png')
 plt.show()
 
 ############## STIMULATED CTRL POPULATION ##############
-plt.figure(figsize=(12,8))
+plt.figure(figsize=(14,8))
 t, v = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
