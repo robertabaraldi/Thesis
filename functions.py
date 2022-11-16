@@ -211,7 +211,7 @@ def stim(ind):
 
     sim.reset()
 
-    proto.schedule(0.045, 2200, 1000, 1000, 1)
+    proto.schedule(0.045, 2011, 1000, 1000, 1)
     sim.set_protocol(proto)
     dat_rrc = sim.run(5000)
 
