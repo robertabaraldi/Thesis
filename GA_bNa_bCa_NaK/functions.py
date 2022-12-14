@@ -126,32 +126,17 @@ def build_pop(pop):
 #%%
 def ind_excel():
 
-    #ind_1 = pd.read_excel('Best_ind1.xlsx')
-    #ind_1 = ind_1.to_dict('index')
+    ind_1 = pd.read_excel('Best_ind1.xlsx')
+    ind_1 = ind_1.to_dict('index')
 
-    #ind_2 = pd.read_excel('Best_ind2.xlsx')
-    #ind_2 = ind_2.to_dict('index')
+    ind_2 = pd.read_excel('Best_ind2.xlsx')
+    ind_2 = ind_2.to_dict('index')
 
-    #ind_3 = pd.read_excel('Best_ind3.xlsx')
-    #ind_3 = ind_3.to_dict('index')
+    ind_3 = pd.read_excel('Best_ind3.xlsx')
+    ind_3 = ind_3.to_dict('index')
 
-    #ind_4 = pd.read_excel('Best_ind4.xlsx')
-    #ind_4 = ind_4.to_dict('index')
-
-    ind_5 = pd.read_excel('Best_ind5.xlsx')
-    ind_5 = ind_5.to_dict('index')
-
-    #ind_6 = pd.read_excel('Best_ind6.xlsx')
-    #ind_6 = ind_6.to_dict('index')
-
-    ind_7 = pd.read_excel('Best_ind7.xlsx')
-    ind_7 = ind_7.to_dict('index')
-
-    ind_8 = pd.read_excel('Best_ind8.xlsx')
-    ind_8 = ind_8.to_dict('index')
-
-    ind_9 = pd.read_excel('Best_ind9.xlsx')
-    ind_9 = ind_9.to_dict('index')
+    ind_4 = pd.read_excel('Best_ind4.xlsx')
+    ind_4 = ind_4.to_dict('index')
 
     ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
     ind_ctrl1 = ind_ctrl1.to_dict('index')
@@ -159,49 +144,34 @@ def ind_excel():
     ind_ctrl2 = pd.read_excel('Best_ind_ctrl2.xlsx')
     ind_ctrl2 = ind_ctrl2.to_dict('index')
 
-    #ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
-    #ind_ctrl3 = ind_ctrl3.to_dict('index')
+    ind_ctrl3 = pd.read_excel('Best_ind_ctrl3.xlsx')
+    ind_ctrl3 = ind_ctrl3.to_dict('index')
 
     ind_ctrl4 = pd.read_excel('Best_ind_ctrl4.xlsx')
     ind_ctrl4 = ind_ctrl4.to_dict('index')
 
-    ind_ctrl5 = pd.read_excel('Best_ind_ctrl5.xlsx')
-    ind_ctrl5 = ind_ctrl5.to_dict('index')
-
-    return ind_5, ind_7, ind_8, ind_9, ind_ctrl1, ind_ctrl2, ind_ctrl4, ind_ctrl5
+    return ind_1, ind_2, ind_3, ind_3, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4
 
 #%%
 def err_excel():
 
-    #err_1 = pd.read_excel('Errors1.xlsx')
+    err_1 = pd.read_excel('Errors1.xlsx')
 
-    #err_2 = pd.read_excel('Errors2.xlsx')
+    err_2 = pd.read_excel('Errors2.xlsx')
 
-    #err_3 = pd.read_excel('Errors3.xlsx')
+    err_3 = pd.read_excel('Errors3.xlsx')
 
-    #err_4 = pd.read_excel('Errors4.xlsx')
-
-    err_5 = pd.read_excel('Errors5.xlsx')
-
-    #err_6 = pd.read_excel('Errors6.xlsx')
-
-    err_7 = pd.read_excel('Errors7.xlsx')
-
-    err_8 = pd.read_excel('Errors8.xlsx')
-
-    err_9 = pd.read_excel('Errors9.xlsx')
+    err_4 = pd.read_excel('Errors4.xlsx')
 
     err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
 
     err_ctrl2 = pd.read_excel('Errors_ctrl2.xlsx')
 
-    #err_ctrl3 = pd.read_excel('Errors_ctrl3.xlsx')
+    err_ctrl3 = pd.read_excel('Errors_ctrl3.xlsx')
 
     err_ctrl4 = pd.read_excel('Errors_ctrl4.xlsx')
 
-    err_ctrl5 = pd.read_excel('Errors_ctrl5.xlsx')
-
-    return err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5
+    return err_1, err_2, err_3, err_4, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4
 
 #%%
 def stim(ind):

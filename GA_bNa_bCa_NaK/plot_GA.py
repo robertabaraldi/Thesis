@@ -78,7 +78,7 @@ plt.show()
 plt.figure(figsize=(12,6))
 gen = [i for i in list(range(1,80))]
 
-err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5 = err_excel()
+err_5, err_7, err_8, err_9, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4 = err_excel()
 
 err_HCM = [err_5, err_7, err_8, err_9]
 err_CTRL = [err_ctrl1, err_ctrl2, err_ctrl4, err_ctrl5]
