@@ -32,7 +32,7 @@ def plot_GA(ind):
     end_ap = start_ap + max_idx
 
     v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
-    
+
     return t_leak,v_leak
 
 #%%
@@ -87,7 +87,12 @@ def baseline_run():
     v_leak = np.concatenate((v_leak, v_array))
     t_leak = np.concatenate((t_leak, t_array))
 
-    return t_leak, v_leak
+    iks = np.array(dat['iks.i_Ks'][0:917])
+    ikr = np.array(dat['ikr.i_Kr'][0:917])
+    ical = np.array(dat['ical.i_CaL'][0:917])
+    ina = np.array(dat['ina.i_Na'][0:917])
+
+    return t_leak, v_leak, iks, ikr, ical, ina
 
 #%%
 def build_pop(pop):
@@ -174,7 +179,13 @@ def ind_excel():
     ind_ctrl6 = pd.read_excel('Best_ind_ctrl6.xlsx')
     ind_ctrl6 = ind_ctrl6.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6
+    ind_ctrl7 = pd.read_excel('Best_ind_ctrl7.xlsx')
+    ind_ctrl7 = ind_ctrl7.to_dict('index')
+
+    ind_ctrl8 = pd.read_excel('Best_ind_ctrl8.xlsx')
+    ind_ctrl8 = ind_ctrl8.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8
 
 #%%
 def err_excel():
@@ -211,7 +222,11 @@ def err_excel():
 
     err_ctrl6 = pd.read_excel('Errors_ctrl6.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6
+    err_ctrl7 = pd.read_excel('Errors_ctrl7.xlsx')
+
+    err_ctrl8 = pd.read_excel('Errors_ctrl8.xlsx')
+
+    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6, err_ctrl7, err_ctrl8
 
 #%%
 def stim(ind):
