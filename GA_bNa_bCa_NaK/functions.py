@@ -32,7 +32,7 @@ def plot_GA(ind):
     end_ap = start_ap + max_idx
 
     v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
-
+    
     return t_leak,v_leak
 
 #%%
@@ -259,3 +259,36 @@ def stim(ind):
     v_rrc = np.array(dat_rrc['membrane.V'][start_ap:end_ap])
 
     return t_leak, v_leak, t_rrc, v_rrc
+
+#%%
+def currents(ind):
+    mod, proto, x = myokit.load('./kernik_leak_fixed.mmt')
+
+    for k, v in ind[0].items():
+            k1, k2 = k.split('.')
+            mod[k1][k2].set_rhs(v)
+
+    proto.schedule(4, 10, 1, 1000, 0) 
+    sim = myokit.Simulation(mod,proto)
+    sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
+    dat = sim.run(50000)
+
+    i_stim = dat['stimulus.i_stim']
+    peaks = find_peaks(-np.array(i_stim), distance=100)[0]
+    start_ap = peaks[-3] 
+    end_ap = peaks[-2]
+
+    t = np.array(dat['engine.time'][start_ap:end_ap])
+    t = t - t[0]
+    max_idx = np.argmin(np.abs(t-900))
+    t_leak = t[0:max_idx]
+    end_ap = start_ap + max_idx
+
+    v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
+    iks = np.array(dat['iks.i_Ks'][start_ap:end_ap])
+    ikr = np.array(dat['ikr.i_Kr'][start_ap:end_ap])
+    ical = np.array(dat['ical.i_CaL'][start_ap:end_ap])
+    ina = np.array(dat['ina.i_Na'][start_ap:end_ap])
+
+
+    return t_leak,v_leak, iks, ikr, ical, ina

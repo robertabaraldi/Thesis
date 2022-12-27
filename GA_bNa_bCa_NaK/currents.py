@@ -1,6 +1,6 @@
 #%%
 import matplotlib.pyplot as plt
-from functions import err_excel
+from functions import err_excel, currents, ind_excel
 
 #%%
 
@@ -44,4 +44,28 @@ plt.xlabel('Generation', fontsize=14)
 plt.ylim(0,5000)
 plt.suptitle('CTRL Errors', fontsize=14)
 plt.savefig('CTRL_Errors.png')
+plt.show()
+
+#%%
+
+########## PLOT CURRENTS ###########
+plt.figure(figsize=(14,8))
+
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6 = ind_excel()
+pop_HCM = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6]
+
+for i in list(range(0,len(pop_HCM))):
+    t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
+    plt.plot(t, iks, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    plt.plot(t, ikr, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    plt.plot(t, ical, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    plt.plot(t, ina, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+plt.legend(loc='upper right')
+plt.ylabel('Time (ms)', fontsize=14)
+plt.xlabel('Current (A/F)', fontsize=14)
+plt.ylim(0,5000)
+plt.suptitle('HCM Currents', fontsize=14)
+plt.savefig('HCM_Currents.png')
 plt.show()
