@@ -4,6 +4,7 @@ from functions import plot_GA, ind_excel
 from scipy.signal import find_peaks 
 import pandas as pd
 import matplotlib.pyplot as plt
+from functions import currents
 
 #%%
 
@@ -140,5 +141,3 @@ for i in list(range(1,len(pop_CTRL))):
     df = pd.concat([df, df1])
 
 df.to_excel('AP_features_CTRL.xlsx', sheet_name='Sheet1',index=False)
-
-

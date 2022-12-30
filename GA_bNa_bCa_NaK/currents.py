@@ -1,6 +1,7 @@
 #%%
 import matplotlib.pyplot as plt
 from functions import err_excel, currents, ind_excel, baseline_run
+import pandas as pd
 
 #%%
 
@@ -48,8 +49,14 @@ plt.show()
 
 #%%
 
-############ PLOT CURRENTS #############
+############ PLOT HCM CURRENTS #############
 fig, axs = plt.subplots(4, 1, figsize=(16, 8))
+
+### Baseline ###
+ind = pd.read_excel('Best_ind.xlsx')
+ind = ind.to_dict('index')
+t_b, v_b, iks_b, ikr_b, ical_b, ina_b = currents(ind)
+###############
 
 ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10 = ind_excel()
 pop_HCM = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10]
@@ -59,12 +66,16 @@ for i in list(range(0,len(pop_HCM))):
     t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
     axs[0].plot(t, iks, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
 
+axs[0].plot(t_b, iks_b, 'k', label = 'Baseline')
+
 axs[0].legend(fontsize = 5, loc='upper right')
 axs[0].set_ylabel('iKs (A/F)', fontsize=14)
 
 for i in list(range(0,len(pop_HCM))):
     t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
     axs[1].plot(t, ikr, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[1].plot(t_b, ikr_b, 'k', label = 'Baseline')
 
 axs[1].legend(fontsize = 5, loc='upper right')
 axs[1].set_ylabel('iKr (A/F)', fontsize=14)
@@ -73,12 +84,16 @@ for i in list(range(0,len(pop_HCM))):
     t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
     axs[2].plot(t, ical, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
 
+axs[2].plot(t_b, ical_b, 'k', label = 'Baseline')
+
 axs[2].legend(fontsize = 5, loc='upper right')
 axs[2].set_ylabel('iCaL (A/F)', fontsize=14)
 
 for i in list(range(0,len(pop_HCM))):
     t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
     axs[3].plot(t, ina, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[3].plot(t_b, ina_b, 'k', label = 'Baseline')
 
 axs[3].legend(fontsize = 5, loc='upper right')
 axs[3].set_ylabel('iNa (A/F)', fontsize=14)
@@ -88,4 +103,103 @@ plt.suptitle('HCM Currents', fontsize=20)
 plt.savefig('HCM_Currents.png')
 plt.show()
 
+#%%
+
+############ PLOT CTRL CURRENTS #############
+fig, axs = plt.subplots(4, 1, figsize=(16, 8))
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[0].plot(t, iks, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+
+axs[0].plot(t_b, iks_b, 'k', label = 'Baseline')
+
+axs[0].legend(fontsize = 5, loc='upper right')
+axs[0].set_ylabel('iKs (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[1].plot(t, ikr, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+
+axs[1].plot(t_b, ikr_b, 'k', label = 'Baseline')
+
+axs[1].legend(fontsize = 5, loc='upper right')
+axs[1].set_ylabel('iKr (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[2].plot(t, ical, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+
+axs[2].plot(t_b, ical_b, 'k', label = 'Baseline')
+
+axs[2].legend(fontsize = 5, loc='upper right')
+axs[2].set_ylabel('iCaL (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[3].plot(t, ina, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+
+axs[3].plot(t_b, ina_b, 'k', label = 'Baseline')
+
+axs[3].legend(fontsize = 5, loc='upper right')
+axs[3].set_ylabel('iNa (A/F)', fontsize=14)
+axs[3].set_xlabel('Time (ms)', fontsize=14)
+
+plt.suptitle('CTRL Currents', fontsize=20)
+plt.savefig('CTRL_Currents.png')
+plt.show()
+
+#%%
+############ PLOT CURRENTS TOGETHER #############
+
+fig, axs = plt.subplots(4, 1, figsize=(16, 8))
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[0].plot(t, iks, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
+    axs[0].plot(t, iks, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[0].plot(t_b, iks_b, 'k', label = 'Baseline')
+
+axs[0].legend(fontsize = 5, loc='upper right')
+axs[0].set_ylabel('iKs (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[1].plot(t, ikr, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
+    axs[1].plot(t, ikr, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[1].plot(t_b, ikr_b, 'k', label = 'Baseline')
+
+axs[1].legend(fontsize = 5, loc='upper right')
+axs[1].set_ylabel('iKr (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[2].plot(t, ical, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
+    axs[2].plot(t, ical, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[2].plot(t_b, ical_b, 'k', label = 'Baseline')
+
+axs[2].legend(fontsize = 5, loc='upper right')
+axs[2].set_ylabel('iCaL (A/F)', fontsize=14)
+
+for i in list(range(0,len(pop_CTRL))):
+    t, v, iks, ikr, ical, ina = currents(pop_CTRL[i])
+    axs[3].plot(t, ina, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    t, v, iks, ikr, ical, ina = currents(pop_HCM[i])
+    axs[3].plot(t, ina, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+
+axs[3].plot(t_b, ina_b, 'k', label = 'Baseline')
+
+axs[3].legend(fontsize = 5, loc='upper right')
+axs[3].set_ylabel('iNa (A/F)', fontsize=14)
+axs[3].set_xlabel('Time (ms)', fontsize=14)
+
+plt.suptitle('Currents', fontsize=20)
+plt.savefig('Currents.png')
+plt.show()
 

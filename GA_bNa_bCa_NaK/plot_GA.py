@@ -12,7 +12,7 @@ from scipy.signal import find_peaks
 ###### PLOT HCM BEST IND ########
 fig, axs = plt.subplots(1, 2, figsize=(20, 6))
 
-t, v = baseline_run()
+t, v, iks, ikr, ical, ina = baseline_run()
 axs[0].plot(t, v, '-k', label = 'Baseline')
 
 ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10 = ind_excel()
@@ -55,7 +55,7 @@ plt.show()
 ####### PLOT CTRL BEST IND ########
 fig, axs = plt.subplots(1, 2, figsize=(20, 6))
 
-t, v = baseline_run()
+t, v, iks, ikr, ical, ina = baseline_run()
 axs[0].plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_CTRL))):
@@ -87,7 +87,7 @@ plt.show()
 ######## PLOT TOGETHER HCM AND CTRL ############
 plt.figure(figsize=(14,8))
 
-t, v = baseline_run()
+t, v, iks, ikr, ical, ina = baseline_run()
 plt.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_HCM))):
