@@ -3,12 +3,14 @@ import numpy as np
 from functions import plot_GA, ind_excel
 from scipy.signal import find_peaks 
 import pandas as pd
+import matplotlib.pyplot as plt
+from functions import currents
 
 #%%
-ind_1, ind_2, ind_3, ind_4, ind_5, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5 = ind_excel()
 
-pop_HCM = [ind_1, ind_2, ind_3, ind_4, ind_5]
-pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5]
+ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10 = ind_excel()
+pop_HCM = [ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10]
+pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10]
 
 ############## HCM FEATURES ###############
 
@@ -74,6 +76,8 @@ for i in list(range(1,len(pop_HCM))):
 
 df.to_excel('AP_features_HCM.xlsx', sheet_name='Sheet1',index=False)
 
+#%%
+
 ############## CTRL FEATURES ###############
 
 ap_features = {}
@@ -137,7 +141,3 @@ for i in list(range(1,len(pop_CTRL))):
     df = pd.concat([df, df1])
 
 df.to_excel('AP_features_CTRL.xlsx', sheet_name='Sheet1',index=False)
-
-#%%
-
-
