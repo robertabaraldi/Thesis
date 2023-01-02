@@ -140,7 +140,7 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 axs[0].hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-axs[0].set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
+axs[0].set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 axs[0].set_ylim(log10(0.1), log10(10))
 axs[0].set_ylabel('Log10 Conductance', fontsize=14)
 
@@ -178,7 +178,7 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 axs[1].hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-axs[1].set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
+axs[1].set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 axs[1].set_ylim(log10(0.1), log10(10))
 axs[1].set_ylabel('Log10 Conductance', fontsize=14)
 
@@ -223,7 +223,7 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 plt.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak','GbNa','GbCa','GNaK'], fontsize=10)
+plt.xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=10)
 plt.ylim(log10(0.1), log10(10))
 plt.ylabel('Log10 Conductance', fontsize=14)
 

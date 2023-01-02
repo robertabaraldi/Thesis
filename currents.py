@@ -38,7 +38,7 @@ plt.figure(figsize=(14,8))
 for i in list(range(0,len(err_CTRL))):
     best_err = list(err_CTRL[i]['Best Error'])
     plt.plot(gen, best_err,'*', color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
-
+    
 plt.legend(loc='upper right')
 plt.ylabel('Error', fontsize=14)
 plt.xlabel('Generation', fontsize=14)

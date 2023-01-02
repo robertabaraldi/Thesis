@@ -87,10 +87,10 @@ def baseline_run():
     v_leak = np.concatenate((v_leak, v_array))
     t_leak = np.concatenate((t_leak, t_array))
 
-    iks = np.array(dat['iks.i_Ks'][0:917])
-    ikr = np.array(dat['ikr.i_Kr'][0:917])
-    ical = np.array(dat['ical.i_CaL'][0:917])
-    ina = np.array(dat['ina.i_Na'][0:917])
+    iks = np.array(dat['iks.IKs'][0:754])
+    ikr = np.array(dat['ikr.IKr'][0:754])
+    ical = np.array(dat['ical.ICaL'][0:754])
+    ina = np.array(dat['ina.INa'][0:754])
 
     return t_leak, v_leak, iks, ikr, ical, ina
 
@@ -131,34 +131,34 @@ def build_pop(pop):
 #%%
 def ind_excel():
 
-    ind_1 = pd.read_excel('Best_ind1.xlsx')
+    ind_1 = pd.read_excel('Best_ind_1.xlsx')
     ind_1 = ind_1.to_dict('index')
 
-    ind_2 = pd.read_excel('Best_ind2.xlsx')
+    ind_2 = pd.read_excel('Best_ind_2.xlsx')
     ind_2 = ind_2.to_dict('index')
 
-    ind_3 = pd.read_excel('Best_ind3.xlsx')
+    ind_3 = pd.read_excel('Best_ind_3.xlsx')
     ind_3 = ind_3.to_dict('index')
 
-    ind_4 = pd.read_excel('Best_ind4.xlsx')
+    ind_4 = pd.read_excel('Best_ind_4.xlsx')
     ind_4 = ind_4.to_dict('index')
 
-    ind_5 = pd.read_excel('Best_ind5.xlsx')
+    ind_5 = pd.read_excel('Best_ind_5.xlsx')
     ind_5 = ind_5.to_dict('index')
 
-    ind_6 = pd.read_excel('Best_ind6.xlsx')
+    ind_6 = pd.read_excel('Best_ind_6.xlsx')
     ind_6 = ind_6.to_dict('index')
 
-    ind_7 = pd.read_excel('Best_ind7.xlsx')
+    ind_7 = pd.read_excel('Best_ind_7.xlsx')
     ind_7 = ind_7.to_dict('index')
 
-    ind_8 = pd.read_excel('Best_ind8.xlsx')
+    ind_8 = pd.read_excel('Best_ind_8.xlsx')
     ind_8 = ind_8.to_dict('index')
 
-    ind_9 = pd.read_excel('Best_ind9.xlsx')
+    ind_9 = pd.read_excel('Best_ind_9.xlsx')
     ind_9 = ind_9.to_dict('index')
 
-    ind_10 = pd.read_excel('Best_ind10.xlsx')
+    ind_10 = pd.read_excel('Best_ind_10.xlsx')
     ind_10 = ind_10.to_dict('index')
 
     ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
@@ -196,25 +196,25 @@ def ind_excel():
 #%%
 def err_excel():
 
-    err_1 = pd.read_excel('Errors1.xlsx')
+    err_1 = pd.read_excel('Errors_1.xlsx')
 
-    err_2 = pd.read_excel('Errors2.xlsx')
+    err_2 = pd.read_excel('Errors_2.xlsx')
 
-    err_3 = pd.read_excel('Errors3.xlsx')
+    err_3 = pd.read_excel('Errors_3.xlsx')
 
-    err_4 = pd.read_excel('Errors4.xlsx')
+    err_4 = pd.read_excel('Errors_4.xlsx')
 
-    err_5 = pd.read_excel('Errors5.xlsx')
+    err_5 = pd.read_excel('Errors_5.xlsx')
 
-    err_6 = pd.read_excel('Errors6.xlsx')
+    err_6 = pd.read_excel('Errors_6.xlsx')
 
-    err_7 = pd.read_excel('Errors7.xlsx')
+    err_7 = pd.read_excel('Errors_7.xlsx')
 
-    err_8 = pd.read_excel('Errors8.xlsx')
+    err_8 = pd.read_excel('Errors_8.xlsx')
 
-    err_9 = pd.read_excel('Errors9.xlsx')
+    err_9 = pd.read_excel('Errors_9.xlsx')
 
-    err_10 = pd.read_excel('Errors10.xlsx')
+    err_10 = pd.read_excel('Errors_10.xlsx')
 
     err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
 
@@ -310,10 +310,10 @@ def currents(ind):
     end_ap = start_ap + max_idx
 
     v_leak = np.array(dat['membrane.V'][start_ap:end_ap])
-    iks = np.array(dat['iks.i_Ks'][start_ap:end_ap])
-    ikr = np.array(dat['ikr.i_Kr'][start_ap:end_ap])
-    ical = np.array(dat['ical.i_CaL'][start_ap:end_ap])
-    ina = np.array(dat['ina.i_Na'][start_ap:end_ap])
+    iks = np.array(dat['iks.IKs'][start_ap:end_ap])
+    ikr = np.array(dat['ikr.IKr'][start_ap:end_ap])
+    ical = np.array(dat['ical.ICaL'][start_ap:end_ap])
+    ina = np.array(dat['ina.INa'][start_ap:end_ap])
 
 
     return t_leak,v_leak, iks, ikr, ical, ina
