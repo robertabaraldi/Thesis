@@ -44,8 +44,3 @@ axs[1].set_xlabel('Time (ms)', fontsize=14)
 
 fig.savefig('Plot_CurrentInjection.png')
 plt.show()
-
-# %%
-
-plt.plot (t, iks)
-plt.show()
