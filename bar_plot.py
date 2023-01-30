@@ -19,6 +19,7 @@ all_ind_dict = dict(zip(keys, empty_arrs))
 
 for ind in pop_HCM:
         for k, v in ind[0].items():
+            v = log10(v)
             all_ind_dict[k].append(v)
 
 '''data_hcm = pd.DataFrame(all_ind_dict)
@@ -30,6 +31,7 @@ all_ind_dict = dict(zip(keys, empty_arrs))
 
 for ind in pop_CTRL:
         for k, v in ind[0].items():
+            v = log10(v)
             all_ind_dict[k].append(v)
 
 '''data_ctrl = pd.DataFrame(all_ind_dict)
@@ -47,7 +49,7 @@ axs.spines['top'].set_visible(False)
 sns.pointplot(df_hcm, join=False, capsize=.2, color='blue')
 sns.pointplot(df_ctrl, join=False, capsize=.2, color='red')
 
-axs.hlines(1, -.5, (len(keys)-.5), colors='black', linestyle='--')
+axs.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 axs.set_ylabel('Conductances', fontsize=14)
