@@ -46,9 +46,15 @@ plt.rcParams['svg.fonttype'] = 'none'
 axs.spines['right'].set_visible(False)
 axs.spines['top'].set_visible(False)
 
-sns.pointplot(df_hcm, join=False, capsize=.2, color='blue')
-sns.pointplot(df_ctrl, join=False, capsize=.2, color='red')
+sns.pointplot(df_hcm, join=False, capsize=.2, color='red')
+sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d')
 
+import matplotlib.lines as mlines
+
+red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
+blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
+
+plt.legend(handles=[red_circle, blue_diamond])
 axs.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
