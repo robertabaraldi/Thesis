@@ -5,6 +5,7 @@ import seaborn as sns
 from scipy.stats import ttest_ind
 from math import log10
 import numpy as np
+import matplotlib.lines as mlines
 
 ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10 = ind_excel()
 
@@ -48,8 +49,7 @@ axs.spines['top'].set_visible(False)
 
 sns.pointplot(df_hcm, join=False, capsize=.2, color='red')
 sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d')
-
-import matplotlib.lines as mlines
+sns.lineplot(linewidth=0.2)
 
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
