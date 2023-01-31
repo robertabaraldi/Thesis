@@ -41,24 +41,39 @@ data_ctrl.to_excel('Cond_CTRL.xlsx', sheet_name='Sheet1',index=False)'''
 df_hcm = pd.read_excel('Cond_HCM.xlsx')
 df_ctrl = pd.read_excel('Cond_CTRL.xlsx')
 
-fig, axs = plt.subplots(1, 1, figsize=(12, 8))
-plt.rcParams['svg.fonttype'] = 'none'
 
-axs.spines['right'].set_visible(False)
-axs.spines['top'].set_visible(False)
+plt.figure(figsize=(12,8))
 
+sns.swarmplot(df_hcm, palette=sns.color_palette(['red','red','red','red','red','red','red','red']))
+sns.swarmplot(df_ctrl, palette=sns.color_palette(['blue','blue','blue','blue','blue','blue','blue','blue']))
 sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
 sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
-sns.lineplot(linewidth=0.2)
 
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
 
 plt.legend(handles=[red_circle, blue_diamond])
-axs.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
+plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
-axs.set_ylabel('Log10 Conductance', fontsize=14)
-plt.savefig('Bar_conductances.png')
+plt.ylabel('Log10 Conductance', fontsize=14)
+plt.savefig('Bar_Cat_conductances.png')
 plt.show()
 
+#######################################################################################
+
+plt.figure(figsize=(12,8))
+
+sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
+sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
+
+red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
+blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
+
+plt.legend(handles=[red_circle, blue_diamond])
+plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+plt.ylabel('Log10 Conductance', fontsize=14)
+plt.savefig('Bar_conductances.png')
+plt.show()
