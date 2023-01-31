@@ -69,7 +69,7 @@ def baseline_run():
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-980))
+    max_idx = np.argmin(np.abs(t-990))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
