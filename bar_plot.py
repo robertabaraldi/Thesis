@@ -58,7 +58,7 @@ plt.legend(handles=[red_circle, blue_diamond])
 axs.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
-axs.set_ylabel('Conductances', fontsize=14)
+axs.set_ylabel('Log10 Conductance', fontsize=14)
 plt.savefig('Bar_conductances.png')
 plt.show()
 
