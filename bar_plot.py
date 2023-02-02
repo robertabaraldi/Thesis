@@ -38,16 +38,19 @@ for ind in pop_CTRL:
 '''data_ctrl = pd.DataFrame(all_ind_dict)
 data_ctrl.to_excel('Cond_CTRL.xlsx', sheet_name='Sheet1',index=False)'''
 
-df_hcm = pd.read_excel('Cond_HCM.xlsx')
-df_ctrl = pd.read_excel('Cond_CTRL.xlsx')
 
+df_all = pd.read_excel('conductances.xlsx')
 
 plt.figure(figsize=(12,8))
 
-sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
-sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
-sns.swarmplot(df_hcm, palette=sns.color_palette(['lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral']))
-sns.swarmplot(df_ctrl, palette=sns.color_palette(['lightblue','lightblue','lightblue','lightblue','lightblue','lightblue','lightblue','lightblue']))
+#sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
+#sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
+#sns.swarmplot(df_hcm, palette=sns.color_palette(['lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral','lightcoral']))
+#sns.swarmplot(df_ctrl, palette=sns.color_palette(['lightblue','lightblue','lightblue','lightblue','lightblue','lightblue','lightblue','lightblue']))
+
+
+sns.swarmplot(df_all, x='conductance_name', y='parameter_value', hue='cell_type', palette=sns.color_palette(['lightblue','lightcoral']), dodge=True)
+sns.pointplot(df_all, x='conductance_name', y='parameter_value', hue='cell_type',join=False, capsize=.2, palette=sns.color_palette(['blue','red']), markers=['d','o'], errwidth=2, dodge=0.3)
 
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
@@ -64,8 +67,9 @@ plt.show()
 
 plt.figure(figsize=(12,8))
 
-sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
-sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
+#sns.pointplot(df_hcm, join=False, capsize=.2, color='red', markers='o', errwidth=2)
+#sns.pointplot(df_ctrl, join=False, capsize=.2, color='blue', markers='d', errwidth=2)
+sns.pointplot(df_all, x='conductance_name', y='parameter_value', hue='cell_type',join=False, capsize=.2, palette=sns.color_palette(['blue','red']), markers=['d','o'], errwidth=2, dodge=0.3)
 
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
@@ -75,5 +79,6 @@ plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
 plt.ylabel('Log10 Conductance', fontsize=14)
+plt.xlabel(xlabel=None)
 plt.savefig('Bar_conductances.png')
 plt.show()
