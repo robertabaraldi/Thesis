@@ -9,7 +9,7 @@ from scipy.signal import find_peaks
 #%%
 ############## STIMULATED HCM POPULATION ##############
 fig, axs = plt.subplots(1, 1, figsize=(12, 8))
-t, v, iks, ikr, ical, ina = baseline_run()
+t, v = baseline_run()
 axs.plot(t, v, '-k', label = 'Baseline')
 
 ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10 = ind_excel()
@@ -30,9 +30,10 @@ axs.set_xlabel('Time (ms)', fontsize=14)
 fig.savefig('CurrentInjection_HCM.png')
 plt.show()
 
+
 ############## STIMULATED CTRL POPULATION ##############
 fig, axs = plt.subplots(1, 1, figsize=(12, 8))
-t, v, iks, ikr, ical, ina = baseline_run()
+t, v = baseline_run()
 axs.plot(t, v, '-k', label = 'Baseline')
 
 pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10]

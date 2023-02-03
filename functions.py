@@ -69,7 +69,7 @@ def baseline_run():
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-980))
+    max_idx = np.argmin(np.abs(t-990))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -87,12 +87,12 @@ def baseline_run():
     v_leak = np.concatenate((v_leak, v_array))
     t_leak = np.concatenate((t_leak, t_array))
 
-    iks = np.array(dat['iks.IKs'][0:754])
-    ikr = np.array(dat['ikr.IKr'][0:754])
-    ical = np.array(dat['ical.ICaL'][0:754])
-    ina = np.array(dat['ina.INa'][0:754])
+    #iks = np.array(dat['iks.IKs'][0:754])
+    #ikr = np.array(dat['ikr.IKr'][0:754])
+    #ical = np.array(dat['ical.ICaL'][0:754])
+    #ina = np.array(dat['ina.INa'][0:754])
 
-    return t_leak, v_leak, iks, ikr, ical, ina
+    return t_leak, v_leak
 
 #%%
 def build_pop(pop):
@@ -258,7 +258,7 @@ def stim(ind):
 
     t = np.array(dat['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-980))
+    max_idx = np.argmin(np.abs(t-990))
     t_leak = t[0:max_idx]
     end_ap = start_ap + max_idx
 
@@ -277,7 +277,7 @@ def stim(ind):
 
     t = np.array(dat_rrc['engine.time'][start_ap:end_ap])
     t = t - t[0]
-    max_idx = np.argmin(np.abs(t-980))
+    max_idx = np.argmin(np.abs(t-990))
     t_rrc = t[0:max_idx]
     end_ap = start_ap + max_idx
 
