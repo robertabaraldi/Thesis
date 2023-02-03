@@ -35,6 +35,7 @@ df_ctrl = pd.read_excel('Cond_CTRL.xlsx')
 
 t_value = ttest_ind(df_hcm, df_ctrl)
 cond_significance = []
+print(t_value)
 
 for i in t_value.pvalue:
     if i < .05:
