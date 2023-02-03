@@ -75,7 +75,7 @@ blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None',
 
 plt.legend(handles=[red_circle, blue_diamond])
 plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
-plt.xticks(fontsize=14)
+plt.xticks(label=['GKs','GCal','GKr','GNa','Gto','GK1','Gf','Gleak','GbNa','GbCa','GNaK'],fontsize=14)
 plt.yticks(fontsize=14)
 plt.ylabel('Log10 Conductance', fontsize=14)
 plt.xlabel(xlabel=None)
