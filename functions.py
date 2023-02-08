@@ -87,6 +87,7 @@ def baseline_run():
     v_leak = np.concatenate((v_leak, v_array))
     t_leak = np.concatenate((t_leak, t_array))
 
+    #cat = np.array(dat['calcium.Cai'])
     #iks = np.array(dat['iks.IKs'][0:754])
     #ikr = np.array(dat['ikr.IKr'][0:754])
     #ical = np.array(dat['ical.ICaL'][0:754])
@@ -314,9 +315,10 @@ def currents(ind):
     ikr = np.array(dat['ikr.IKr'][start_ap:end_ap])
     ical = np.array(dat['ical.ICaL'][start_ap:end_ap])
     ina = np.array(dat['ina.INa'][start_ap:end_ap])
+    cat = np.array(dat['calcium.Cai'][start_ap:end_ap])
 
 
-    return t_leak,v_leak, iks, ikr, ical, ina
+    return t_leak,v_leak, iks, ikr, ical, ina, cat
 
 #%%
 def ca_block(ind):
