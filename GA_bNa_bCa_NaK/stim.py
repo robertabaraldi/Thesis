@@ -22,7 +22,10 @@ c_stim = ['lightcoral', 'indianred', 'brown', 'firebrick', 'maroon', 'red', 'sal
 for i in list(range(0,len(pop_HCM))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_HCM[i])
     axs.plot(t_leak, v_leak, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
-    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Stim_HCM_{i+1}')
+
+for i in list(range(0,len(pop_HCM))):
+    t_leak, v_leak, t_rrc, v_rrc = stim(pop_HCM[i])
+    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Inj_HCM_{i+1}')
 
 axs.legend(fontsize= 5, loc='upper right')
 axs.set_ylabel('Voltage (mV)', fontsize=14)
@@ -40,7 +43,10 @@ pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, in
 for i in list(range(0,len(pop_CTRL))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_CTRL[i])
     axs.plot(t_leak, v_leak, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
-    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Stim_CTRL_{i+1}')
+
+for i in list(range(0,len(pop_CTRL))):
+    t_leak, v_leak, t_rrc, v_rrc = stim(pop_CTRL[i])
+    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Inj_CTRL_{i+1}')
 
 axs.legend(fontsize= 5, loc='upper right')
 axs.set_ylabel('Voltage (mV)', fontsize=14)
