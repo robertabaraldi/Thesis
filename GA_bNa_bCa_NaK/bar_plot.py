@@ -54,7 +54,7 @@ sns.pointplot(df_all, x='conductance_name', y='parameter_value', hue='cell_type'
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
 
-plt.legend(handles=[red_circle, blue_diamond])
+plt.legend(handles=[blue_diamond, red_circle])
 plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(fontsize=14)
 plt.yticks(fontsize=14)
@@ -73,7 +73,7 @@ sns.pointplot(df_all, x='conductance_name', y='parameter_value', hue='cell_type'
 red_circle = mlines.Line2D([], [], color='red', marker='o', linestyle='None', markersize=7, label='HCM')
 blue_diamond = mlines.Line2D([], [], color='blue', marker='d', linestyle='None', markersize=7, label='CTRL')
 
-plt.legend(handles=[red_circle, blue_diamond])
+plt.legend(handles=[ blue_diamond, red_circle])
 plt.hlines(0, -.5, (len(keys)-.5), colors='black', linestyle='--')
 plt.xticks(label=['GKs','GCal','GKr','GNa','Gto','GK1','Gf','Gleak','GbNa','GbCa','GNaK'],fontsize=14)
 plt.yticks(fontsize=14)
