@@ -63,7 +63,7 @@ for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
     plt.plot(t, v, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
 
-plt.legend(loc='upper right')
+plt.legend(fontsize= 5, loc='upper right')
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
 plt.savefig('HCMandCTRL.png')
