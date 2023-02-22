@@ -87,12 +87,12 @@ def baseline_run():
     v_leak = np.concatenate((v_leak, v_array))
     t_leak = np.concatenate((t_leak, t_array))
 
-    iks = np.array(dat['iks.i_Ks'][0:917])
-    ikr = np.array(dat['ikr.i_Kr'][0:917])
-    ical = np.array(dat['ical.i_CaL'][0:917])
-    ina = np.array(dat['ina.i_Na'][0:917])
+    #iks = np.array(dat['iks.i_Ks'][0:917])
+    #ikr = np.array(dat['ikr.i_Kr'][0:917])
+    #ical = np.array(dat['ical.i_CaL'][0:917])
+    #ina = np.array(dat['ina.i_Na'][0:917])
 
-    return t_leak, v_leak, iks, ikr, ical, ina
+    return t_leak, v_leak
 
 #%%
 def build_pop(pop):
@@ -161,6 +161,21 @@ def ind_excel():
     ind_10 = pd.read_excel('Best_ind10.xlsx')
     ind_10 = ind_10.to_dict('index')
 
+    ind_11 = pd.read_excel('Best_ind11.xlsx')
+    ind_11 = ind_11.to_dict('index')
+
+    ind_12 = pd.read_excel('Best_ind12.xlsx')
+    ind_12 = ind_12.to_dict('index')
+
+    ind_13 = pd.read_excel('Best_ind13.xlsx')
+    ind_13 = ind_13.to_dict('index')
+
+    ind_14 = pd.read_excel('Best_ind14.xlsx')
+    ind_14 = ind_14.to_dict('index')
+
+    ind_15 = pd.read_excel('Best_ind15.xlsx')
+    ind_15 = ind_15.to_dict('index')
+
     ind_ctrl1 = pd.read_excel('Best_ind_ctrl1.xlsx')
     ind_ctrl1 = ind_ctrl1.to_dict('index')
 
@@ -191,7 +206,7 @@ def ind_excel():
     ind_ctrl10 = pd.read_excel('Best_ind_ctrl10.xlsx')
     ind_ctrl10 = ind_ctrl10.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10
+    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14, ind_15, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10
 
 #%%
 def err_excel():
@@ -216,6 +231,16 @@ def err_excel():
 
     err_10 = pd.read_excel('Errors10.xlsx')
 
+    err_11 = pd.read_excel('Errors11.xlsx')
+
+    err_12 = pd.read_excel('Errors12.xlsx')
+
+    err_13 = pd.read_excel('Errors13.xlsx')
+
+    err_14 = pd.read_excel('Errors14.xlsx')
+
+    err_15 = pd.read_excel('Errors15.xlsx')
+
     err_ctrl1 = pd.read_excel('Errors_ctrl1.xlsx')
 
     err_ctrl2 = pd.read_excel('Errors_ctrl2.xlsx')
@@ -236,7 +261,7 @@ def err_excel():
 
     err_ctrl10 = pd.read_excel('Errors_ctrl10.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6, err_ctrl7, err_ctrl8, err_ctrl9, err_ctrl10
+    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14, err_15, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6, err_ctrl7, err_ctrl8, err_ctrl9, err_ctrl10
 
 #%%
 def stim(ind):
