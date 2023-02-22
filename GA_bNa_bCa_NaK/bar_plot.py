@@ -23,8 +23,8 @@ for ind in pop_HCM:
             v = log10(v)
             all_ind_dict[k].append(v)
 
-data_hcm = pd.DataFrame(all_ind_dict)
-data_hcm.to_excel('Cond_HCM.xlsx', sheet_name='Sheet1',index=False)
+'''data_hcm = pd.DataFrame(all_ind_dict)
+data_hcm.to_excel('Cond_HCM.xlsx', sheet_name='Sheet1',index=False)'''
 
 keys = [k for k in pop_CTRL[0][0].keys()]
 empty_arrs = [[] for i in range(len(keys))]
@@ -35,8 +35,8 @@ for ind in pop_CTRL:
             v = log10(v)
             all_ind_dict[k].append(v)
 
-data_ctrl = pd.DataFrame(all_ind_dict)
-data_ctrl.to_excel('Cond_CTRL.xlsx', sheet_name='Sheet1',index=False)
+'''data_ctrl = pd.DataFrame(all_ind_dict)
+data_ctrl.to_excel('Cond_CTRL.xlsx', sheet_name='Sheet1',index=False)'''
 
 df_all = pd.read_excel('conductances.xlsx')
 
