@@ -206,7 +206,22 @@ def ind_excel():
     ind_ctrl10 = pd.read_excel('Best_ind_ctrl10.xlsx')
     ind_ctrl10 = ind_ctrl10.to_dict('index')
 
-    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14, ind_15, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10
+    ind_ctrl11 = pd.read_excel('Best_ind_ctrl11.xlsx')
+    ind_ctrl11 = ind_ctrl11.to_dict('index')
+
+    ind_ctrl12 = pd.read_excel('Best_ind_ctrl12.xlsx')
+    ind_ctrl12 = ind_ctrl12.to_dict('index')
+
+    ind_ctrl13 = pd.read_excel('Best_ind_ctrl13.xlsx')
+    ind_ctrl13 = ind_ctrl13.to_dict('index')
+
+    ind_ctrl14 = pd.read_excel('Best_ind_ctrl14.xlsx')
+    ind_ctrl14 = ind_ctrl14.to_dict('index')
+
+    ind_ctrl15 = pd.read_excel('Best_ind_ctrl15.xlsx')
+    ind_ctrl15 = ind_ctrl15.to_dict('index')
+
+    return ind_1, ind_2, ind_3, ind_4, ind_5, ind_6, ind_7, ind_8, ind_9, ind_10, ind_11, ind_12, ind_13, ind_14, ind_15, ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10, ind_ctrl11, ind_ctrl12, ind_ctrl13, ind_ctrl14, ind_ctrl15
 
 #%%
 def err_excel():
@@ -261,7 +276,17 @@ def err_excel():
 
     err_ctrl10 = pd.read_excel('Errors_ctrl10.xlsx')
 
-    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14, err_15, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6, err_ctrl7, err_ctrl8, err_ctrl9, err_ctrl10
+    err_ctrl11 = pd.read_excel('Errors_ctrl11.xlsx')
+
+    err_ctrl12 = pd.read_excel('Errors_ctrl12.xlsx')
+
+    err_ctrl13 = pd.read_excel('Errors_ctrl13.xlsx')
+
+    err_ctrl14 = pd.read_excel('Errors_ctrl14.xlsx')
+
+    err_ctrl15 = pd.read_excel('Errors_ctrl15.xlsx')
+
+    return err_1, err_2, err_3, err_4, err_5, err_6, err_7, err_8, err_9, err_10, err_11, err_12, err_13, err_14, err_15, err_ctrl1, err_ctrl2, err_ctrl3, err_ctrl4, err_ctrl5, err_ctrl6, err_ctrl7, err_ctrl8, err_ctrl9, err_ctrl10, err_ctrl11, err_ctrl12, err_ctrl13, err_ctrl14, err_ctrl15
 
 #%%
 def stim(ind):
