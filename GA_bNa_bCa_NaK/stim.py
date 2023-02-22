@@ -39,8 +39,6 @@ fig, axs = plt.subplots(1, 1, figsize=(12, 8))
 t, v = baseline_run()
 axs.plot(t, v, '-k', label = 'Baseline')
 
-pop_CTRL = [ind_ctrl1, ind_ctrl2, ind_ctrl3, ind_ctrl4, ind_ctrl5, ind_ctrl6, ind_ctrl7, ind_ctrl8, ind_ctrl9, ind_ctrl10]
-
 for i in list(range(0,len(pop_CTRL))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_CTRL[i])
     axs.plot(t_leak, v_leak, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
