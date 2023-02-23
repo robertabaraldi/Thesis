@@ -1,12 +1,10 @@
 #%%
 import myokit
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
-from functions import baseline_run, plot_GA, ind_excel, err_excel
-import seaborn as sns
+from functions import baseline_run, plot_GA, ind_excel
 from math import log10
-from scipy.signal import find_peaks
+import matplotlib.lines as mlines
 
 #%%
 ###### PLOT HCM BEST IND ########
@@ -25,7 +23,7 @@ c_CTRL = ['palegreen', 'lawngreen', 'lightgreen', 'lime', 'limegreen', 'yellowgr
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
-    axs.plot(t, v, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    axs.plot(t, v, color=c_HCM[i], label = f'HCM trial {i+1}')
 
 axs.legend(loc='upper right')
 axs.set_ylabel('Voltage (mV)', fontsize=14)
@@ -42,7 +40,7 @@ axs.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
-    axs.plot(t, v, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    axs.plot(t, v, color=c_CTRL[i], label = f'CTRL trial {i+1}')
 
 axs.legend(loc='upper right')
 axs.set_ylabel('Voltage (mV)', fontsize=14)
@@ -60,13 +58,16 @@ plt.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
-    plt.plot(t, v, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    plt.plot(t, v, color=c_HCM[i], label = f'HCM trial {i+1}')
 
 for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
-    plt.plot(t, v, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    plt.plot(t, v, color=c_CTRL[i], label = f'CTRL trial {i+1}')
 
-plt.legend(fontsize= 5, loc='upper right')
+ctrl = mlines.Line2D([], [], color='green', label='CTRL trials')
+hcm = mlines.Line2D([], [], color='blue', label='HCM trials')
+
+plt.legend(handles=[ctrl, hcm])
 plt.ylabel('Voltage (mV)', fontsize=14)
 plt.xlabel('Time (ms)', fontsize=14)
 plt.savefig('HCMandCTRL.png')
@@ -79,7 +80,7 @@ fig, axs = plt.subplots(1, 1, figsize=(12, 8))
 trials = []
 
 for i in list(range(0,len(pop_HCM))):
-    trials.append(f'Trial_HCM_{i+1}')
+    trials.append(f'HCM trial {i+1}')
 
 keys = [k for k in pop_HCM[0][0].keys()]
 empty_arrs = [[] for i in range(len(keys))]
@@ -119,7 +120,7 @@ fig, axs = plt.subplots(1, 1, figsize=(12, 8))
 trials = []
 
 for i in list(range(0,len(pop_CTRL))):
-    trials.append(f'Trial_CTRL_{i+1}')
+    trials.append(f'CTRL trial {i+1}')
 
 keys = [k for k in pop_CTRL[0][0].keys()]
 empty_arrs = [[] for i in range(len(keys))]

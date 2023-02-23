@@ -296,7 +296,7 @@ def stim(ind):
             k1, k2 = k.split('.')
             mod[k1][k2].set_rhs(v)
 
-    proto.schedule(5, 10, 1, 1000, 0) 
+    proto.schedule(4, 10, 1, 1000, 0) 
     sim = myokit.Simulation(mod,proto)
     sim.pre(1000 * 100) #pre-pace for 100 beats, to allow AP reach the steady state
     dat = sim.run(50000)
