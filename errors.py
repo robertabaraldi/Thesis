@@ -16,7 +16,7 @@ fig, axs = plt.subplots(1, 1, figsize=(12, 8))
 
 for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
-    axs.scatter(gen, best_err, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    axs.scatter(gen, best_err, color=c_HCM[i], label = f'HCM trial {i+1}')
 
 axs.legend(loc='upper right')
 axs.set_ylabel('Error', fontsize=14)
@@ -32,7 +32,7 @@ fig, axs = plt.subplots(1, 1, figsize=(12, 8))
 
 for i in list(range(0,len(err_CTRL))):
     best_err = list(err_CTRL[i]['Best Error'])
-    axs.scatter(gen, best_err, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    axs.scatter(gen, best_err, color=c_CTRL[i], label = f'CTRL trial {i+1}')
 
 axs.legend(loc='upper right')
 axs.set_ylabel('Error', fontsize=14)

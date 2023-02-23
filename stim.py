@@ -1,10 +1,8 @@
 #%%
 import myokit
 import matplotlib.pyplot as plt
-import numpy as np
-from functions import baseline_run, plot_GA, ind_excel, err_excel, stim
-from math import log10
-from scipy.signal import find_peaks
+from functions import baseline_run, ind_excel, stim
+import matplotlib.lines as mlines
 
 #%%
 ############## STIMULATED HCM POPULATION ##############
@@ -22,13 +20,16 @@ c_stim = ['mistyrose','lightcoral','coral', 'indianred', 'brown', 'rosybrown', '
 
 for i in list(range(0,len(pop_HCM))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_HCM[i])
-    axs.plot(t_leak, v_leak, color=c_HCM[i], label = f'Trial_HCM_{i+1}')
+    axs.plot(t_leak, v_leak, color=c_HCM[i])
 
 for i in list(range(0,len(pop_HCM))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_HCM[i])
-    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Inj_HCM_{i+1}')
+    axs.plot(t_rrc, v_rrc, color=c_stim[i])
 
-axs.legend(fontsize= 5, loc='upper right')
+hcm = mlines.Line2D([], [], color='blue', label='HCM trials')
+hcm_inj = mlines.Line2D([], [], color='red', label='HCM trials with current injection')
+
+axs.legend(handles=[hcm, hcm_inj])
 axs.set_ylabel('Voltage (mV)', fontsize=14)
 axs.set_xlabel('Time (ms)', fontsize=14)
 fig.savefig('CurrentInjection_HCM.png')
@@ -42,13 +43,16 @@ axs.plot(t, v, '-k', label = 'Baseline')
 
 for i in list(range(0,len(pop_CTRL))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_CTRL[i])
-    axs.plot(t_leak, v_leak, color=c_CTRL[i], label = f'Trial_CTRL_{i+1}')
+    axs.plot(t_leak, v_leak, color=c_CTRL[i])
 
 for i in list(range(0,len(pop_CTRL))):
     t_leak, v_leak, t_rrc, v_rrc = stim(pop_CTRL[i])
-    axs.plot(t_rrc, v_rrc, color=c_stim[i], label = f'Trial_Inj_CTRL_{i+1}')
+    axs.plot(t_rrc, v_rrc, color=c_stim[i])
 
-axs.legend(fontsize= 5, loc='upper right')
+ctrl = mlines.Line2D([], [], color='green', label='CTRL trials')
+ctrl_inj = mlines.Line2D([], [], color='red', label='CTRL trials with current injection')
+
+axs.legend(handles=[ctrl, ctrl_inj])
 axs.set_ylabel('Voltage (mV)', fontsize=14)
 axs.set_xlabel('Time (ms)', fontsize=14)
 fig.savefig('CurrentInjection_CTRL.png')
