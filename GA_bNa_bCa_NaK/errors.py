@@ -25,9 +25,9 @@ for i in list(range(0,len(err_HCM))):
     best_err = list(err_HCM[i]['Best Error'])
     axs.scatter(gen, best_err, color=c_HCM[i], label = f'HCM trial {i+1}')
 
-axs.legend(fontsize= 8, loc='upper right')
-axs.set_ylabel('Error', fontsize=14)
-axs.set_xlabel('Generation', fontsize=14)
+axs.legend(fontsize= 9, loc='upper right')
+axs.set_ylabel('Error', fontsize=16)
+axs.set_xlabel('Generation', fontsize=16)
 axs.set_ylim(0,4000)
 
 fig.savefig('Errors_HCM.png')
@@ -41,9 +41,9 @@ for i in list(range(0,len(err_CTRL))):
     best_err = list(err_CTRL[i]['Best Error'])
     axs.scatter(gen, best_err, color=c_CTRL[i], label = f'CTRL trial {i+1}')
 
-axs.legend(fontsize= 8, loc='upper right')
-axs.set_ylabel('Error', fontsize=14)
-axs.set_xlabel('Generation', fontsize=14)
+axs.legend(fontsize= 9, loc='upper right')
+axs.set_ylabel('Error', fontsize=16)
+axs.set_xlabel('Generation', fontsize=16)
 axs.set_ylim(0,4000)
 
 fig.savefig('Errors_CTRL.png')
