@@ -24,9 +24,9 @@ for i in list(range(0,len(pop_HCM))):
     t, v = plot_GA(pop_HCM[i])
     axs.plot(t, v, color=c_HCM[i], label = f'HCM trial {i+1}')
 
-axs.legend(loc='upper right')
-axs.set_ylabel('Voltage (mV)', fontsize=14)
-axs.set_xlabel('Time (ms)', fontsize=14)
+axs.legend(fontsize=11, loc='upper right')
+axs.set_ylabel('Voltage (mV)', fontsize=16)
+axs.set_xlabel('Time (ms)', fontsize=16)
 fig.savefig('HCM.png')
 plt.show()
 
@@ -41,9 +41,9 @@ for i in list(range(0,len(pop_CTRL))):
     t, v = plot_GA(pop_CTRL[i])
     axs.plot(t, v, color=c_CTRL[i], label = f'CTRL trial {i+1}')
 
-axs.legend(loc='upper right')
-axs.set_ylabel('Voltage (mV)', fontsize=14)
-axs.set_xlabel('Time (ms)', fontsize=14)
+axs.legend(fontsize=11, loc='upper right')
+axs.set_ylabel('Voltage (mV)', fontsize=16)
+axs.set_xlabel('Time (ms)', fontsize=16)
 fig.savefig('CTRL.png')
 plt.show()
 
@@ -66,9 +66,9 @@ for i in list(range(0,len(pop_CTRL))):
 ctrl = mlines.Line2D([], [], color='green', label='CTRL trials')
 hcm = mlines.Line2D([], [], color='blue', label='HCM trials')
 
-plt.legend(handles=[ctrl, hcm])
-plt.ylabel('Voltage (mV)', fontsize=14)
-plt.xlabel('Time (ms)', fontsize=14)
+plt.legend(fontsize=15, handles=[ctrl, hcm])
+plt.ylabel('Voltage (mV)', fontsize=16)
+plt.xlabel('Time (ms)', fontsize=16)
 plt.savefig('HCMandCTRL.png')
 plt.show()
 
@@ -98,7 +98,7 @@ for k, conds in all_ind_dict.items():
         x = curr_x + np.random.normal(0, .01)
         if m == 0:
             axs.scatter(x, g, color=c_HCM[i], label = trials[i])
-            axs.legend(fontsize=5, loc='upper right')
+            axs.legend(fontsize=6, loc='upper right')
         else:
             axs.scatter(x, g, color=c_HCM[i])
     m = 1
@@ -108,9 +108,9 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 axs.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-axs.set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=14)
+axs.set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=16)
 axs.set_ylim(log10(0.1), log10(10))
-axs.set_ylabel('Log10 Conductance', fontsize=14)
+axs.set_ylabel('Log10 Conductance', fontsize=16)
 fig.savefig('HCM_conductances.png')
 plt.show()
 
@@ -138,7 +138,7 @@ for k, conds in all_ind_dict.items():
         x = curr_x + np.random.normal(0, .01)
         if m == 0:
             axs.scatter(x, g, color=c_CTRL[i], label = trials[i])
-            axs.legend(fontsize=5, loc='upper right')
+            axs.legend(fontsize=6, loc='upper right')
         else:
             axs.scatter(x, g, color=c_CTRL[i])
     m = 1
@@ -148,9 +148,9 @@ for k, conds in all_ind_dict.items():
 curr_x = 0
 
 axs.hlines(0, -.5, (len(keys)-.5), colors='grey', linestyle='--')
-axs.set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=14)
+axs.set_xticks([i for i in range(0, len(keys))], ['GKs', 'GCaL', 'GKr', 'GNa', 'Gto', 'GK1', 'Gf','Gleak'], fontsize=16)
 axs.set_ylim(log10(0.1), log10(10))
-axs.set_ylabel('Log10 Conductance', fontsize=14)
+axs.set_ylabel('Log10 Conductance', fontsize=16)
 fig.savefig('CTRL_conductances.png')
 plt.show()
 

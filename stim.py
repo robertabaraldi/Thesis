@@ -29,9 +29,9 @@ for i in list(range(0,len(pop_HCM))):
 hcm = mlines.Line2D([], [], color='blue', label='HCM trials')
 hcm_inj = mlines.Line2D([], [], color='red', label='HCM trials with current injection')
 
-axs.legend(handles=[hcm, hcm_inj])
-axs.set_ylabel('Voltage (mV)', fontsize=14)
-axs.set_xlabel('Time (ms)', fontsize=14)
+axs.legend(fontsize=13, handles=[hcm, hcm_inj])
+axs.set_ylabel('Voltage (mV)', fontsize=16)
+axs.set_xlabel('Time (ms)', fontsize=16)
 fig.savefig('CurrentInjection_HCM.png')
 plt.show()
 
@@ -52,8 +52,8 @@ for i in list(range(0,len(pop_CTRL))):
 ctrl = mlines.Line2D([], [], color='green', label='CTRL trials')
 ctrl_inj = mlines.Line2D([], [], color='red', label='CTRL trials with current injection')
 
-axs.legend(handles=[ctrl, ctrl_inj])
-axs.set_ylabel('Voltage (mV)', fontsize=14)
-axs.set_xlabel('Time (ms)', fontsize=14)
+axs.legend(fontsize=13, handles=[ctrl, ctrl_inj])
+axs.set_ylabel('Voltage (mV)', fontsize=16)
+axs.set_xlabel('Time (ms)', fontsize=16)
 fig.savefig('CurrentInjection_CTRL.png')
 plt.show()
